@@ -246,13 +246,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_CarouselPartial.cshtml" />
-    <Content Include="Views\Shared\_TopList.cshtml" />
-    <Content Include="Views\Catalog\Create.cshtml" />
-    <Content Include="Views\Catalog\Delete.cshtml" />
-    <Content Include="Views\Catalog\Details.cshtml" />
-    <Content Include="Views\Catalog\Edit.cshtml" />
-    <Content Include="Views\Catalog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
