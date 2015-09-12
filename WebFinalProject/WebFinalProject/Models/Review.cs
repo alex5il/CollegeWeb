@@ -25,12 +25,9 @@ namespace WebFinalProject.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
         public DateTime ReviewDate { get; set; }
 
-        [DisplayName("Text"), Required]
-        public string Text { get; set; }
+        public string UserId { get; set; }
 
-        public int ApplicationUserId { get; set; }
-
-        [ForeignKey("ApplicationUserId")]
+        [ForeignKey("UserId")]
         public virtual ApplicationUser User { get; set; }
 
         public int GameId { get; set; }

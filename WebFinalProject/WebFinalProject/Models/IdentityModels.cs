@@ -25,6 +25,11 @@ namespace WebFinalProject.Models
         {
         }
 
+        public DbSet<Game> Games { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
