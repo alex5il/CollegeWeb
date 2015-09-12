@@ -22,9 +22,9 @@ namespace WebFinalProject.Models
         [DisplayName("Transaction Date"), Required]
         public DateTime CommentDate { get; set; }
 
-        public int ApplicationUserId { get; set; }
+        public string UserId { get; set; }
 
-        [ForeignKey("ApplicationUserId")]
+        [ForeignKey("UserId")]
         public virtual ApplicationUser User { get; set; }
 
         public virtual ICollection<Game> Games { get; set; }
