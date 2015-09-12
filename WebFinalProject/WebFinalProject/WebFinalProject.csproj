@@ -247,6 +247,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_CarouselPartial.cshtml" />
     <Content Include="Views\Shared\_TopList.cshtml" />
+    <Content Include="Views\Shared\_LatestReview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

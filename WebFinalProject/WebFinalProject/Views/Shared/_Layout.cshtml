@@ -25,10 +25,22 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        
+
                         <li>@Html.ActionLink("Catalog", "Index", "Catalog")</li>
                         <li>@Html.ActionLink("Reviews", "Index", "Home")</li>
 
-                        <li>@Html.ActionLink("Shopping cart", "Index", "Home")</li>
+                        @if ( User.Identity.IsAuthenticated ){
+                            if (User.IsInRole("User")) 
+                            {
+                                <li>@Html.ActionLink("Shopping cart", "Index", "Home")</li>
+                            }
+                        
+                            if (User.IsInRole("Admin"))
+                            {
+                                <li>@Html.ActionLink("Manage", "Index", "Home")</li>
+                            }
+                        }
 
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
