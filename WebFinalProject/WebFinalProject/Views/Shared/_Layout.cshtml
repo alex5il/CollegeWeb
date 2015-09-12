@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar colored navbar-fixed-top">
+        <nav class="navbar navbar-inverse colored navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,6 +27,9 @@
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Catalog", "Index", "Home")</li>
                         <li>@Html.ActionLink("Reviews", "Index", "Home")</li>
+
+                        <li>@Html.ActionLink("Shopping cart", "Index", "Home")</li>
+
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     </ul>
@@ -35,6 +38,9 @@
             </div>
         </nav>
     </header>
+
+    @Html.Partial("_CarouselPartial")
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -45,6 +51,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/layout")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

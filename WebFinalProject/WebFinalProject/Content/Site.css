@@ -7,6 +7,8 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+
+    margin-top: 25px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -31,5 +33,69 @@ header nav .logo {
 }
 
 nav.colored {
-    background-color: rgb(161, 202, 31);
+    background-color: #2b2d31;
+    font-weight:700;
+}
+
+
+/*CAROUSEL*/
+
+.img-responsive {
+    width: 70%;
+
+    margin: 0 auto; /* Align slide image horizontally center */
+}
+
+.carousel {
+    height: 350px;
+
+    background: #2f4357;
+    margin-top: 20px;
+
+    overflow: hidden;
+}
+
+/* ==========  TOP LIST ============= */
+ 
+.top-list ul{
+  list-style-type: none;
+  width: 500px;
+}
+ 
+.top-list h3 {
+  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+ 
+.top-list li img {
+  float: left;
+  margin: 0 15px 0 0;
+}
+ 
+.top-list li p {
+  font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+ 
+.top-list li {
+  padding: 10px;
+  overflow: auto;
+}
+ 
+.top-list li:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+.top-list div.item-description {
+    display: inline-block;
+}
+
+.top-list div.item-rating{
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+
+    vertical-align:top;
+    text-align:center;
+    padding-top: 20px;
+    font-size:large;
 }
