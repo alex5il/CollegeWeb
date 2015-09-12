@@ -8,7 +8,7 @@ namespace WebFinalProject.Models
 {
     public class Review
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [DisplayName("Title"), Required, StringLength(30)]
         public string Title { get; set; }
@@ -28,14 +28,14 @@ namespace WebFinalProject.Models
         [DisplayName("Text"), Required]
         public string Text { get; set; }
 
-        public int ApplicationUserID { get; set; }
+        public int ApplicationUserId { get; set; }
 
-        [ForeignKey("ApplicationUserID")]
+        [ForeignKey("ApplicationUserId")]
         public virtual ApplicationUser User { get; set; }
 
-        public int GameID { get; set; }
+        public int GameId { get; set; }
 
-        [ForeignKey("GameID")]
+        [ForeignKey("GameId")]
         public virtual Game Game { get; set; }
     }
 }

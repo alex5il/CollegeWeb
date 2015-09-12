@@ -13,6 +13,7 @@ namespace WebFinalProject.Models
         public int Id { get; set; }
 
         [DataType(DataType.Currency)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:C}")]
         [DisplayName("Total Cost"), Required, Range(0.00, 10000000.00)]
         public decimal Cost { get; set; }
 
