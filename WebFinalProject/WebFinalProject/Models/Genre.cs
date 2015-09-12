@@ -16,5 +16,7 @@ namespace WebFinalProject.Models
 
         [DisplayName("Description"), Required, StringLength(500)]
         public string Description { get; set; }
+
+        public virtual ICollection<Game> Games { get; set; }
     }
 }
