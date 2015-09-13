@@ -14,8 +14,30 @@ namespace WebFinalProject.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        // GET : Reviews - paged
+        public ViewResult Index(string sortOrder, string searchString)
+        {
+            // Filter parameters
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            var reviews = from r in db.Reviews
+                           select r;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                reviews = reviews.Where(r => r.Title.Contains(searchString)
+                                       || r.Game.Title.Contains(searchString));
+            }
+
+            // Order by desc review date
+            reviews = reviews.OrderByDescending(s => s.ReviewDate);
+
+            return View(reviews.ToList());
+        }
+
         // GET: Reviews
-        public ActionResult Index()
+        public ActionResult Index2()
         {
             var reviews = db.Reviews.Include(r => r.Game).Include(r => r.User);
             return View(reviews.ToList());
