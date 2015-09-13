@@ -16,20 +16,11 @@ namespace WebFinalProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET : Reviews - paged
-        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             // Filter parameters
-
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
             ViewBag.CurrentFilter = searchString;
+            ViewBag.CurrentSort = sortOrder;
 
             var reviews = from r in db.Reviews
                            select r;
@@ -45,15 +36,13 @@ namespace WebFinalProject.Controllers
 
             int pageSize = 3;
             int pageNumber = (page ?? 1); // DEFAULT 1
-            return View(reviews.ToPagedList(pageNumber, pageSize));
+
+            ViewBag.Names = reviews.ToPagedList(pageNumber, pageSize);
+            var model = reviews.ToPagedList(pageNumber, pageSize);
+
+            return Request.IsAjaxRequest() ? (ActionResult)PartialView("ReviewsTemplate", model) : View(model);
         }
 
-        // GET: Reviews
-        public ActionResult Index2()
-        {
-            var reviews = db.Reviews.Include(r => r.Game).Include(r => r.User);
-            return View(reviews.ToList());
-        }
 
         // GET: Reviews/Details/5
         public ActionResult Details(int? id)
