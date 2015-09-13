@@ -172,6 +172,7 @@
     </Compile>
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Purchase.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />

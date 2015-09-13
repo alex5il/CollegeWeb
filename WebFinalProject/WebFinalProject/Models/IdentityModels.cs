@@ -29,6 +29,7 @@ namespace WebFinalProject.Models
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
 
         public static ApplicationDbContext Create()
         {
