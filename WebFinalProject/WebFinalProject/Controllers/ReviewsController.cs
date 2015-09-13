@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebFinalProject.Models;
+using PagedList;
 
 namespace WebFinalProject.Controllers
 {
@@ -14,8 +15,41 @@ namespace WebFinalProject.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        // GET : Reviews - paged
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            // Filter parameters
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var reviews = from r in db.Reviews
+                           select r;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                reviews = reviews.Where(r => r.Title.Contains(searchString)
+                                       || r.Game.Title.Contains(searchString));
+            }
+
+            // Order by desc review date
+            reviews = reviews.OrderByDescending(s => s.ReviewDate);
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1); // DEFAULT 1
+            return View(reviews.ToPagedList(pageNumber, pageSize));
+        }
+
         // GET: Reviews
-        public ActionResult Index()
+        public ActionResult Index2()
         {
             var reviews = db.Reviews.Include(r => r.Game).Include(r => r.User);
             return View(reviews.ToList());

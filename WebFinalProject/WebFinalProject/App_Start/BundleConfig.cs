@@ -26,6 +26,9 @@ namespace WebFinalProject
             bundles.Add(new ScriptBundle("~/bundles/layout").Include(
                         "~/Scripts/SiteJS/layout.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/latestReview").Include(
+                        "~/Scripts/SiteJS/latestReview.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
