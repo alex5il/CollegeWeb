@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebFinalProject.Models;
+using PagedList;
 
 namespace WebFinalProject.Controllers
 {
@@ -15,11 +16,20 @@ namespace WebFinalProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET : Reviews - paged
-        public ViewResult Index(string sortOrder, string searchString)
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             // Filter parameters
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
 
             var reviews = from r in db.Reviews
                            select r;
@@ -33,7 +43,9 @@ namespace WebFinalProject.Controllers
             // Order by desc review date
             reviews = reviews.OrderByDescending(s => s.ReviewDate);
 
-            return View(reviews.ToList());
+            int pageSize = 3;
+            int pageNumber = (page ?? 1); // DEFAULT 1
+            return View(reviews.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Reviews

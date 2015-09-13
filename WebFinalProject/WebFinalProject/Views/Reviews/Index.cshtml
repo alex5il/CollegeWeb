@@ -1,4 +1,7 @@
-﻿@model IEnumerable<WebFinalProject.Models.Review>
+﻿@model PagedList.IPagedList<WebFinalProject.Models.Review>
+
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -11,10 +14,10 @@
 </p>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Reviews", FormMethod.Get))
 {
     <p>
-        Find by name: @Html.TextBox("SearchString")
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
@@ -22,22 +25,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Game.Title)
+            @Html.DisplayNameFor(model => model.First().Game.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.Email)
+            @Html.DisplayNameFor(model => model.First().User.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.First().Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Content)
+            @Html.DisplayNameFor(model => model.First().Content)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Score)
+            @Html.DisplayNameFor(model => model.First().Score)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReviewDate)
+            @Html.DisplayNameFor(model => model.First().ReviewDate)
         </th>
         <th></th>
     </tr>
@@ -71,3 +74,10 @@
 }
 
 </table>
+
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
