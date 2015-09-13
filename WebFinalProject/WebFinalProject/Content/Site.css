@@ -1,13 +1,19 @@
-﻿body {
+﻿/* ==== BASIC SETUP ==== */
+@font-face {
+    font-family: externalFont;
+    src: url(/fonts/OpenSans-Regular.ttf);
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: externalFont;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-
     margin-top: 25px;
 }
 
@@ -24,7 +30,7 @@ select,
 textarea {
     max-width: 280px;
 }
- /* ==== HEADER ==== */
+/* ==== HEADER ==== */
 header nav .logo {
     background: url("/Content/Media/A2kFinal.png") no-repeat;
     width: 50px;
@@ -34,7 +40,7 @@ header nav .logo {
 
 nav.colored {
     background-color: #2b2d31;
-    font-weight:700;
+    font-weight: 700;
 }
 
 
@@ -42,60 +48,67 @@ nav.colored {
 
 .img-responsive {
     width: 70%;
-
     margin: 0 auto; /* Align slide image horizontally center */
 }
 
 .carousel {
     height: 350px;
-
     background: #2f4357;
     margin-top: 20px;
-
     overflow: hidden;
 }
 
 /* ==========  TOP LIST ============= */
- 
-.top-list ul{
-  list-style-type: none;
-  width: 500px;
+
+.top-list ul {
+    list-style-type: none;
+    width: 500px;
 }
- 
+
 .top-list h3 {
-  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+    font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
 }
- 
+
 .top-list li img {
-  float: left;
-  margin: 0 15px 0 0;
+    float: left;
+    margin: 0 15px 0 0;
 }
- 
+
 .top-list li p {
-  font: 200 12px/1.5 Georgia, Times New Roman, serif;
+    font: 200 12px/1.5 Georgia, Times New Roman, serif;
 }
- 
+
 .top-list li {
-  padding: 10px;
-  overflow: auto;
+    padding: 10px;
+    overflow: auto;
 }
- 
-.top-list li:hover {
-  background: #eee;
-  cursor: pointer;
-}
+
+    .top-list li:hover {
+        background: #eee;
+        cursor: pointer;
+    }
 
 .top-list div.item-description {
     display: inline-block;
 }
 
-.top-list div.item-rating{
+.top-list div.item-rating {
     display: inline-block;
     height: 50px;
     width: 50px;
-
-    vertical-align:top;
-    text-align:center;
+    vertical-align: top;
+    text-align: center;
     padding-top: 20px;
-    font-size:large;
+    font-size: large;
+}
+
+/* ========== Text ============= */
+.vertical-table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+/* ========== Video ============= */
+.game-video {
+    width: 400px;
+    height: 400px;
 }

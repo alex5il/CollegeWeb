@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -48,12 +49,38 @@ namespace WebFinalProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,TotalScore,ReleaseDate,Cost,GenreId")] Game game)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,TotalScore,ReleaseDate,Cost,GenreId")] Game game,
+                                   HttpPostedFileBase titleImg, HttpPostedFileBase thumbnailImg, HttpPostedFileBase video)
         {
             if (ModelState.IsValid)
             {
                 db.Games.Add(game);
                 db.SaveChanges();
+
+                string fileName;
+                string path;
+
+                if (titleImg != null && titleImg.ContentLength > 0)
+                {
+                    fileName = game.Id + "title.png";
+                    path = Server.MapPath("~/Content/Media/");
+                    titleImg.SaveAs(Path.Combine(path, fileName));
+                }
+
+                if (thumbnailImg != null && thumbnailImg.ContentLength > 0)
+                {
+                    fileName = game.Id + "title.png";
+                    path = Server.MapPath("~/Content/Media/");
+                    thumbnailImg.SaveAs(Path.Combine(path, fileName));
+                }
+
+                if (video != null && video.ContentLength > 0)
+                {
+                    fileName = game.Id + ".mp4";
+                    path = Server.MapPath("~/Uploads");
+                    video.SaveAs(Path.Combine(path, fileName));
+                }
+
                 return RedirectToAction("Index");
             }
 

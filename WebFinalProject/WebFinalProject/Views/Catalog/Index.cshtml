@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table vertical-table">
     <tr>
         <th>
         </th>
@@ -38,9 +38,9 @@
     {
         <tr>
             <td>
-                @if (File.Exists(Server.MapPath("~/Content/Media/") + item.Id + "s.png"))
+                @if (File.Exists(Server.MapPath("~/Content/Media/") + item.Id + "thumbnail.png"))
                 {
-                    <img src="~/Content/Media/@(item.Id + "s.png")" width="100" height="100" />
+                    <img src="~/Content/Media/@(item.Id + "thumbnail.png")" width="100" height="100" />
                 }
                 else
                 {
