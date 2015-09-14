@@ -37,12 +37,10 @@ namespace WebFinalProject.Controllers
             int pageSize = 3;
             int pageNumber = (page ?? 1); // DEFAULT 1
 
-            ViewBag.Names = reviews.ToPagedList(pageNumber, pageSize);
             var model = reviews.ToPagedList(pageNumber, pageSize);
 
             return Request.IsAjaxRequest() ? (ActionResult)PartialView("ReviewsTemplate", model) : View(model);
         }
-
 
         // GET: Reviews/Details/5
         public ActionResult Details(int? id)

@@ -279,17 +279,16 @@
     <Content Include="Views\Transactions\Details.cshtml" />
     <Content Include="Views\Transactions\Edit.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
-    <Content Include="Views\Shared\_LatestReview.cshtml" />
     <Content Include="Views\Genres\Create.cshtml" />
     <Content Include="Views\Genres\Delete.cshtml" />
     <Content Include="Views\Genres\Details.cshtml" />
     <Content Include="Views\Genres\Edit.cshtml" />
     <Content Include="Views\Genres\Index.cshtml" />
     <Content Include="Views\Reviews\ReviewsTemplate.cshtml" />
+    <Content Include="Views\Home\LatestReviewsTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Shared\AjaxTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

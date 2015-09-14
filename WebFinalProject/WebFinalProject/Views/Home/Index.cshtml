@@ -1,11 +1,18 @@
-﻿@{
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<WebFinalProject.Models.Review>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 
 <div class="row">
     <div class="col-md-8">
-        @Html.Partial("_LatestReview")
+        <h2>Latest Review</h2>
+        <div id="dynamicContent">
+            @Html.Partial("LatestReviewsTemplate", Model)
+        </div>
     </div>
     <div class="col-md-4">
         @Html.Partial("_TopList")
