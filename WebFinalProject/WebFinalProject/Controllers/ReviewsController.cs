@@ -23,7 +23,7 @@ namespace WebFinalProject.Controllers
             ViewBag.CurrentSort = sortOrder;
 
             var reviews = from r in db.Reviews
-                           select r;
+                          select r;
 
             if (!String.IsNullOrEmpty(searchString))
             {

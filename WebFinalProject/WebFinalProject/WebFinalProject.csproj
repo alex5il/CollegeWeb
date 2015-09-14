@@ -290,6 +290,7 @@
     <Content Include="Views\Genres\Edit.cshtml" />
     <Content Include="Views\Genres\Index.cshtml" />
     <Content Include="Views\Reviews\ReviewsTemplate.cshtml" />
+    <Content Include="Views\Catalog\CatalogTemplate.cshtml" />
     <Content Include="Views\Home\LatestReviewsTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
