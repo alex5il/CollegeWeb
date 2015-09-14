@@ -6,15 +6,36 @@
     ViewBag.Title = "Home Page";
 }
 
-
-<div class="row">
-    <div class="col-md-8">
-        <h2>Latest Review</h2>
-        <div id="dynamicContent">
-            @Html.Partial("LatestReviewsTemplate", Model)
-        </div>
-    </div>
-    <div class="col-md-4">
-        @Html.Partial("_TopList")
-    </div>
+<div id="games">
+    Games
 </div>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "http://www.giantbomb.com/api/games/",
+            type: "get",
+            data: { api_key: "e31a53182866e975585bd1891e5716df2864eebf", field_list: "deck,description,name,image,date_added", limit: "1", format: "jsonp", sort: "date_added:asc", platforms: "94", json_callback: "games" },
+            dataType: "jsonp"
+        });
+    });
+
+    function games(game) {
+        console.log(game);
+        $('#games').html('<p> Name: ' + game.results[0].name + '</p>');
+        $('#games').append('<p> Deck : ' + game.results[0].deck + '</p>');
+        $('#games').append('<p> Desc: ' + game.results[0].description + '</p>');
+    }
+</script>
+
+@*<div class="row">
+        <div class="col-md-8">
+            <h2>latest review</h2>
+            <div id="dynamiccontent">
+                @html.partial("latestreviewstemplate", model)
+            </div>
+        </div>
+        <div class="col-md-4">
+            @html.partial("_toplist")
+        </div>
+    </div>*@
