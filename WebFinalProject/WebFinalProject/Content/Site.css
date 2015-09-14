@@ -141,10 +141,6 @@ nav.colored {
   transform-origin: bottom;  
 }
 
-.navbar .nav > li > .dropdown-menu:after {
-
-}
-
 .dropup > .dropdown-menu:after {
   border-bottom: 0;
   border-top: 6px solid rgba(39, 45, 51, 0.9);
@@ -156,4 +152,19 @@ nav.colored {
   left: 50%;
   border-right: 6px solid transparent;
   border-left: 6px solid transparent;
+}
+
+/* ========== Game score ============= */
+.game-score {
+    background: #26272b;
+    box-shadow: rgba(0,0,0,0.75) 0 0 3px,rgba(255,255,255,0.3) 0 0 1px inset;
+    color: #f1f1f4;
+    text-shadow: rgba(0,0,0,0.5) 0 1px 5px;
+    text-align: center;
+    font-family: "proxima-nova","Helvetica Neue Light","Helvetica Neue",sans-serif;
+    font-weight: 600;
+    z-index: 400;
+    border-radius: 400px;
+    -webkit-font-smoothing: antialiased;
+    font-size:70px;
 }

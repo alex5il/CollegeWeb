@@ -75,6 +75,16 @@ namespace WebFinalProject.Controllers
             if (ModelState.IsValid)
             {
                 db.Reviews.Add(review);
+
+                // Recalculate game's average score and add it
+                var gameReviews = (from r in db.Reviews
+                              where r.GameId == review.GameId
+                              select r.Score).ToList();
+
+                gameReviews.Add(review.Score);
+
+                db.Games.Find(review.GameId).TotalScore = (int)gameReviews.Average();
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -111,6 +121,16 @@ namespace WebFinalProject.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(review).State = EntityState.Modified;
+
+                // Recalculate game's average score and add it
+                var gameReviews = (from r in db.Reviews
+                                   where r.GameId == review.GameId && r.Id != review.Id
+                                   select r.Score).ToList();
+
+                gameReviews.Add(review.Score);
+
+                db.Games.Find(review.GameId).TotalScore = (int)gameReviews.Average();
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -140,7 +160,23 @@ namespace WebFinalProject.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Review review = db.Reviews.Find(id);
+
+            // Recalculate game's average score and add it
+            var gameReviews = (from r in db.Reviews
+                               where r.GameId == review.GameId && r.Id != review.Id
+                               select r.Score).ToList();
+
+            if (gameReviews.Count() > 0)
+            {
+                db.Games.Find(review.GameId).TotalScore = (int)gameReviews.Average();
+            }
+            else
+            {
+                db.Games.Find(review.GameId).TotalScore = 0;
+            }
+
             db.Reviews.Remove(review);
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
