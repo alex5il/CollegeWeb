@@ -12,6 +12,10 @@ namespace WebFinalProject
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery.unobtrusive-ajax.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/d3").Include(
+                        "~/Scripts/d3/d3.min.js",
+                        "~/Scripts/d3/d3pie.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -29,6 +33,9 @@ namespace WebFinalProject
 
             bundles.Add(new ScriptBundle("~/bundles/latestReview").Include(
                         "~/Scripts/SiteJS/latestReview.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/game").Include(
+                        "~/Scripts/SiteJS/gameDetails.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

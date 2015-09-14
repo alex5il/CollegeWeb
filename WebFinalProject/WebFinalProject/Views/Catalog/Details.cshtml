@@ -6,53 +6,47 @@
 
 <h2>Details</h2>
 
-@*<div>
+<div class="row">
+    <div class="col-xs-6">
         <h4>Game</h4>
         <hr />
         <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Genre.Name)
-            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
 
             <dd>
                 @Html.DisplayFor(model => model.Genre.Name)
             </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Title)
-            </dt>
-
             <dd>
-                @Html.DisplayFor(model => model.Title)
+                @Html.DisplayFor(model => model.ReleaseDate)
             </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
+            @if (File.Exists(Server.MapPath("~/Content/Media/") + Model.Id + "title.png"))
+            {
+                <dd>
+                    <img src="~/Content/Media/@(Model.Id + "title.png")" width="1500" height="500" />
+                </dd>
+            }
 
             <dd>
                 @Html.DisplayFor(model => model.Description)
             </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.TotalScore)
-            </dt>
+            @if (File.Exists(Server.MapPath("~/Content/Media/") + Model.Id + ".mp4"))
+            {
+                <dd>
+                    <video controls="controls" class="game-video">
+                        <source src="~/Content/Media/@(Model.Id + ".mp4")" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </dd>
+            }
 
             <dd>
                 @Html.DisplayFor(model => model.TotalScore)
             </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ReleaseDate)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ReleaseDate)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Cost)
-            </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.Cost)
@@ -63,56 +57,20 @@
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
         @Html.ActionLink("Back to List", "Index")
-    </p>*@
+    </p>
 
-<div>
-    <h4>Game</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+    <div class="col-xs-offset-2 col-xs-4" id="myPie"></div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Genre.Name)
-        </dd>
-
-        <dd>
-            @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
-
-        @if (File.Exists(Server.MapPath("~/Content/Media/") + Model.Id + "title.png"))
-        {
-            <dd>
-                <img src="~/Content/Media/@(Model.Id + "title.png")" width="1500" height="500" />
-            </dd>
-        }
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        @if (File.Exists(Server.MapPath("~/Content/Media/") + Model.Id + ".mp4"))
-        {
-            <dd>
-                <video controls="controls" class="game-video">
-                    <source src="~/Content/Media/@(Model.Id + ".mp4")" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            </dd>
-        }
-
-        <dd>
-            @Html.DisplayFor(model => model.TotalScore)
-        </dd>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cost)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="row">
+    <div class="col-xs-offset-10 col-xs-2 game-score">
+        @Html.DisplayFor(model => model.TotalScore)
+    </div>
+</div>
+
+<script>
+    var badReview = '@ViewBag.Bad' || 0;
+    var goodReview = '@ViewBag.Good' || 0; 
+    var greatReview = '@ViewBag.Great' || 0; 
+</script>
