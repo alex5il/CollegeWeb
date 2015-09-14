@@ -9,3 +9,14 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<form method="get" action="@Url.Action("Index")"
+      data-otf-ajax="true" data-otf-target="#dynamicContent">
+
+    Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+    <input type="submit" value="Search" />
+</form>
+
+<div id="dynamicContent">
+    @Html.Partial("CatalogTemplate", Model)
+</div>
