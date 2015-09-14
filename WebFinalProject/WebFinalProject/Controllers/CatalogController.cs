@@ -18,6 +18,20 @@ namespace WebFinalProject.Controllers
         // GET: Catalog
         public ActionResult Index()
         {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             var games = db.Games.Include(g => g.Genre);
             return View(games.ToList());
         }

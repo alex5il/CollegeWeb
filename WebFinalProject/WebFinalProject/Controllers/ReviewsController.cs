@@ -23,7 +23,7 @@ namespace WebFinalProject.Controllers
             ViewBag.CurrentSort = sortOrder;
 
             var reviews = from r in db.Reviews
-                           select r;
+                          select r;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -37,7 +37,6 @@ namespace WebFinalProject.Controllers
             int pageSize = 3;
             int pageNumber = (page ?? 1); // DEFAULT 1
 
-            ViewBag.Names = reviews.ToPagedList(pageNumber, pageSize);
             var model = reviews.ToPagedList(pageNumber, pageSize);
 
             return Request.IsAjaxRequest() ? (ActionResult)PartialView("ReviewsTemplate", model) : View(model);
