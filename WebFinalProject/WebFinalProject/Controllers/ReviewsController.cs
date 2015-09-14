@@ -42,7 +42,6 @@ namespace WebFinalProject.Controllers
             return Request.IsAjaxRequest() ? (ActionResult)PartialView("ReviewsTemplate", model) : View(model);
         }
 
-
         // GET: Reviews/Details/5
         public ActionResult Details(int? id)
         {
