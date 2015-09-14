@@ -34,6 +34,30 @@ namespace WebFinalProject.Controllers
             {
                 return HttpNotFound();
             }
+
+            // Get all the reviews scores to that specific game
+            var reviews = from r in db.Reviews
+                          where r.GameId == id
+                          select r.Score;
+
+            var ceilings = new[] { 60, 80, 100 };
+            IEnumerable<IGrouping<int, int>> groupings = reviews.GroupBy(item => ceilings.FirstOrDefault(ceiling => ceiling >= item));
+
+            if (groupings.SingleOrDefault(x => x.Key == 60) != null)
+            {
+                ViewBag.Bad = groupings.SingleOrDefault(x => x.Key == 60).Count();
+            }
+
+            if (groupings.SingleOrDefault(x => x.Key == 80) != null)
+            {
+                ViewBag.Good = groupings.SingleOrDefault(x => x.Key == 80).Count();
+            }
+
+            if (groupings.SingleOrDefault(x => x.Key == 100) != null)
+            {
+                ViewBag.Great = groupings.SingleOrDefault(x => x.Key == 100).Count();
+            }
+
             return View(game);
         }
 
