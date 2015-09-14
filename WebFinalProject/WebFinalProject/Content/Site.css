@@ -154,7 +154,7 @@ nav.colored {
   border-left: 6px solid transparent;
 }
 
-/* ========== Game score ============= */
+/* ========== Game details ============= */
 .game-score {
     background: #26272b;
     box-shadow: rgba(0,0,0,0.75) 0 0 3px,rgba(255,255,255,0.3) 0 0 1px inset;
@@ -167,6 +167,16 @@ nav.colored {
     border-radius: 400px;
     -webkit-font-smoothing: antialiased;
     font-size:70px;
+
+    width:210px;
+    height:100px;
+
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.bottom-links {
+    margin-top: 60px;
 }
 
 
@@ -185,7 +195,7 @@ section article.review-post header .rating b{
     font-size:17px;
 }
 
-section article.review-post div{
+section article.review-post div.content{
     margin-bottom: 25px;
 }
 
@@ -199,4 +209,14 @@ section article.review-post div{
 {
   width:500px;
   height: 200px;
+}
+
+/* ========== tables ============= */
+.tr-clickable {
+    cursor:pointer;
+}
+
+.tr-clickable:hover td{
+    cursor:pointer;
+    background-color: #F4FDCF;
 }

@@ -97,7 +97,7 @@ namespace WebFinalProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,TotalScore,ReleaseDate,Cost,GenreId")] Game game,
+        public ActionResult Create([Bind(Include = "Id,Title,Description,AverageScore,ReleaseDate,Cost,GenreId")] Game game,
                                    HttpPostedFileBase titleImg, HttpPostedFileBase thumbnailImg, HttpPostedFileBase video)
         {
             if (ModelState.IsValid)
@@ -159,7 +159,7 @@ namespace WebFinalProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,TotalScore,ReleaseDate,Cost,GenreId")] Game game)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,AverageScore,ReleaseDate,Cost,GenreId")] Game game)
         {
             if (ModelState.IsValid)
             {

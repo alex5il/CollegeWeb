@@ -4,73 +4,73 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
 <div class="row">
     <div class="col-xs-6">
-        <h4>Game</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dd>
-                @Html.DisplayFor(model => model.Title)
-            </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Genre.Name)
-            </dd>
+        <div class="row">
+            <div class="col-xs-5">
+                @if (File.Exists(Server.MapPath("~/Content/Media/") + Model.Id + "thumbnail.png"))
+{
+    <img src="~/Content/Media/@(Model.Id + "thumbnail.png")" width="150" height="150" />
+}
+                else
+                {
+                    <img src="~/Content/Media/no_pic.png" width="150" height="150" />
+                }
+            </div>
 
-            <dd>
-                @Html.DisplayFor(model => model.ReleaseDate)
-            </dd>
+            <div class="col-xs-7">
+                <h2>@Html.DisplayFor(model => model.Title)</h2>
+                <div><b>Genre:</b> @Html.DisplayFor(model => model.Genre.Name)</div>
 
-            @if (File.Exists(Server.MapPath("~/Content/Media/") + Model.Id + "title.png"))
-            {
-                <dd>
-                    <img src="~/Content/Media/@(Model.Id + "title.png")" width="1500" height="500" />
-                </dd>
-            }
+                <div><b>Release Date:</b> @Html.DisplayFor(model => model.ReleaseDate)</div>
 
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
+                <div><b>Description:</b> @Html.DisplayFor(model => model.Description)</div>
 
-            @if (File.Exists(Server.MapPath("~/Content/Media/") + Model.Id + ".mp4"))
-            {
-                <dd>
+                <div><b>Cost:</b> @Html.DisplayFor(model => model.Cost)</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4 game-score">
+                @Html.DisplayFor(model => model.AverageScore)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-3">
+                @Html.ActionLink("Review game", "Create", "Reviews", new { gameId = Model.Id }, new { @class = "btn btn-primary" })
+            </div>
+
+            <div class="col-xs-3">
+                @Html.ActionLink("Add to cart", "Create", "Transaction", new { gameId = Model.Id }, new { @class = "btn btn-success" })
+            </div>
+        </div>
+
+        @if (File.Exists(Server.MapPath("~/Content/Media/") + Model.Id + ".mp4"))
+        {
+            <div class="row">
+                <div class="col-xs-6">
                     <video controls="controls" class="game-video">
                         <source src="~/Content/Media/@(Model.Id + ".mp4")" type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
-                </dd>
-            }
+                </div>
+             </div>
+        }
 
-            <dd>
-                @Html.DisplayFor(model => model.AverageScore)
-            </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Cost)
-            </dd>
+        <div class="row bottom-links">
+            <div class="col-xs-4" >
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
 
-            <dd>
-                <button class="btn btn-primary">@Html.ActionLink("Review game", "Create", "Reviews", new { gameId = Model.Id }, null)</button>
-            </dd>
-
-        </dl>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
 
     <div class="col-xs-offset-2 col-xs-4" id="myPie"></div>
 
-</div>
-
-<div class="row">
-    <div class="col-xs-offset-10 col-xs-2 game-score">
-        @Html.DisplayFor(model => model.AverageScore)
-    </div>
 </div>
 
 <script>

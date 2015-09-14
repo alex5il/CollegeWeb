@@ -8,10 +8,15 @@
         },
         data: {
             content: [
-                { label: "Bad", value: +badReview, color: "red" },
-                { label: "Good", value: +goodReview, color: "orange" },
-                { label: "Great", value: +greatReview, color: "green" },
+                { label: "Bad", value: +badReview, color: "#bf0000" },
+                { label: "Good", value: +goodReview, color: "#CC6633" },
+                { label: "Great", value: +greatReview, color: "#2B7558" },
             ]
-        }
+        }, size: {
+            canvasHeight: 350,
+            canvasWidth: 350,
+            pieInnerRadius: 12,
+            pieOuterRadius: null
+        },
     });
 });
