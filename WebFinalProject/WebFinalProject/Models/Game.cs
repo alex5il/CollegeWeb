@@ -18,7 +18,7 @@ namespace WebFinalProject.Models
 
         [DisplayName("Average Score")]
         [Range(0, 100)]
-        public int TotalScore { get; set; }
+        public int AverageScore { get; set; }
 
         [DisplayName("Release Date")]
         [DataType(DataType.Date)]

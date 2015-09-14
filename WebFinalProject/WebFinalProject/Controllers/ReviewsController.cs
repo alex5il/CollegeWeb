@@ -83,7 +83,7 @@ namespace WebFinalProject.Controllers
 
                 gameReviews.Add(review.Score);
 
-                db.Games.Find(review.GameId).TotalScore = (int)gameReviews.Average();
+                db.Games.Find(review.GameId).AverageScore = (int)gameReviews.Average();
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -129,7 +129,7 @@ namespace WebFinalProject.Controllers
 
                 gameReviews.Add(review.Score);
 
-                db.Games.Find(review.GameId).TotalScore = (int)gameReviews.Average();
+                db.Games.Find(review.GameId).AverageScore = (int)gameReviews.Average();
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -168,11 +168,11 @@ namespace WebFinalProject.Controllers
 
             if (gameReviews.Count() > 0)
             {
-                db.Games.Find(review.GameId).TotalScore = (int)gameReviews.Average();
+                db.Games.Find(review.GameId).AverageScore = (int)gameReviews.Average();
             }
             else
             {
-                db.Games.Find(review.GameId).TotalScore = 0;
+                db.Games.Find(review.GameId).AverageScore = 0;
             }
 
             db.Reviews.Remove(review);
