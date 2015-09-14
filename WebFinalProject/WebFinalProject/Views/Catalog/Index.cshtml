@@ -6,9 +6,12 @@
 
 <h2>Game Catalog</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 
 <form method="get" action="@Url.Action("Index")"
       data-otf-ajax="true" data-otf-target="#dynamicContent">

@@ -84,6 +84,7 @@ namespace WebFinalProject.Controllers
         }
 
         // GET: Catalog/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.GenreId = new SelectList(db.Genres, "Id", "Name");
@@ -95,7 +96,8 @@ namespace WebFinalProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,AverageScore,ReleaseDate,Cost,GenreId")] Game game,
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create([Bind(Include = "Id,Title,Description,TotalScore,ReleaseDate,Cost,GenreId")] Game game,
                                    HttpPostedFileBase titleImg, HttpPostedFileBase thumbnailImg, HttpPostedFileBase video)
         {
             if (ModelState.IsValid)
@@ -135,6 +137,7 @@ namespace WebFinalProject.Controllers
         }
 
         // GET: Catalog/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -155,7 +158,8 @@ namespace WebFinalProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,AverageScore,ReleaseDate,Cost,GenreId")] Game game)
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,TotalScore,ReleaseDate,Cost,GenreId")] Game game)
         {
             if (ModelState.IsValid)
             {
@@ -168,6 +172,7 @@ namespace WebFinalProject.Controllers
         }
 
         // GET: Catalog/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -185,6 +190,7 @@ namespace WebFinalProject.Controllers
         // POST: Catalog/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Game game = db.Games.Find(id);

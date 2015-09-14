@@ -8,13 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using WebFinalProject.Models;
 using PagedList;
+using Microsoft.AspNet.Identity;
 
 namespace WebFinalProject.Controllers
 {
     public class ReviewsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET : Reviews - paged
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
@@ -58,10 +58,12 @@ namespace WebFinalProject.Controllers
         }
 
         // GET: Reviews/Create
-        public ActionResult Create()
+        public ActionResult Create(int gameId)
         {
-            ViewBag.GameId = new SelectList(db.Games, "Id", "Title");
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
+            ViewBag.GameID = gameId;
+
+            ViewBag.GameTitle = db.Games.Find(gameId).Title;
+
             return View();
         }
 
@@ -85,12 +87,16 @@ namespace WebFinalProject.Controllers
 
                 db.Games.Find(review.GameId).AverageScore = (int)gameReviews.Average();
 
+                review.ReviewDate = DateTime.Now;
+                review.UserId = User.Identity.GetUserId();
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.GameId = new SelectList(db.Games, "Id", "Title", review.GameId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", review.UserId);
+            ViewBag.GameID = review.GameId;
+            ViewBag.GameTitle = db.Games.Find(review.GameId).Title;
+
             return View(review);
         }
 
