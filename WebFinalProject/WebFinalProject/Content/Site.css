@@ -168,3 +168,35 @@ nav.colored {
     -webkit-font-smoothing: antialiased;
     font-size:70px;
 }
+
+
+/* ========== Review details ============= */
+section article.review-post {
+    font-family: "proxima-nova","Helvetica Neue Light","Helvetica Neue",sans-serif;
+    font-weight: 400;
+}
+
+section article.review-post header h2{
+    font-weight: 500;
+}
+
+section article.review-post header .rating b{
+    color: darkorange;
+    font-size:17px;
+}
+
+section article.review-post div{
+    margin-bottom: 25px;
+}
+
+/* ========== Review create ============= */
+.score-input
+{
+  width:80px;
+}
+
+.content-input
+{
+  width:500px;
+  height: 200px;
+}

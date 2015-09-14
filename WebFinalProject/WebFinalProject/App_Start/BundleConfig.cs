@@ -31,8 +31,8 @@ namespace WebFinalProject
             bundles.Add(new ScriptBundle("~/bundles/layout").Include(
                         "~/Scripts/SiteJS/layout.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/latestReview").Include(
-                        "~/Scripts/SiteJS/latestReview.js"));
+            bundles.Add(new ScriptBundle("~/bundles/pagingScript").Include(
+                        "~/Scripts/SiteJS/pagingScript.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/game").Include(
                         "~/Scripts/SiteJS/gameDetails.js"));
