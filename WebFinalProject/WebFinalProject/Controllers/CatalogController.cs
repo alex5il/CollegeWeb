@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebFinalProject.Models;
+using PagedList;
 
 namespace WebFinalProject.Controllers
 {
@@ -16,24 +17,31 @@ namespace WebFinalProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Catalog
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
 
+            // Filter parameters
+            ViewBag.CurrentFilter = searchString;
+            ViewBag.CurrentSort = sortOrder;
 
+            var games = from g in db.Games
+                        select g;
 
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                games = games.Where(g => g.Title.Contains(searchString)
+                                    || g.Description.Contains(searchString));
+            }
 
+            // Order by desc release date
+            games = games.OrderByDescending(g => g.ReleaseDate);
 
+            int pageSize = 3;
+            int pageNumber = (page ?? 1); // DEFAULT 1
 
+            var model = games.ToPagedList(pageNumber, pageSize);
 
-
-
-
-
-
-
-
-            var games = db.Games.Include(g => g.Genre);
-            return View(games.ToList());
+            return Request.IsAjaxRequest() ? (ActionResult)PartialView("CatalogTemplate", model) : View(model);
         }
 
         // GET: Catalog/Details/5
@@ -150,6 +158,7 @@ namespace WebFinalProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,AverageScore,ReleaseDate,Cost,GenreId")] Game game)
         [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,Title,Description,TotalScore,ReleaseDate,Cost,GenreId")] Game game)
         {

@@ -20,7 +20,7 @@ namespace WebFinalProject.Models
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
         [DisplayName("Transaction Date"), Required]
-        public DateTime CommentDate { get; set; }
+        public DateTime TransactionDate { get; set; }
 
         public string UserId { get; set; }
 
