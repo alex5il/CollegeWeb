@@ -1,32 +1,17 @@
-﻿@using PagedList.Mvc;
-@using PagedList;
-@model IPagedList<WebFinalProject.Models.Review>
+﻿@*@using PagedList.Mvc;
+    @using PagedList;
+    @model IPagedList<WebFinalProject.Models.Review>*@
 
 @{
     ViewBag.Title = "Home Page";
 }
 
-<div id="games">
-    Games
-</div>
+<h2>Most popular games from <a href="http://www.giantbomb.com/">GiantBomb.com</a></h2>
+<hr>
 
-<script>
-    $(document).ready(function () {
-        $.ajax({
-            url: "http://www.giantbomb.com/api/games/",
-            type: "get",
-            data: { api_key: "e31a53182866e975585bd1891e5716df2864eebf", field_list: "deck,description,name,image,date_added", limit: "1", format: "jsonp", sort: "date_added:asc", platforms: "94", json_callback: "games" },
-            dataType: "jsonp"
-        });
-    });
+<section id="games"></section>
 
-    function games(game) {
-        console.log(game);
-        $('#games').html('<p> Name: ' + game.results[0].name + '</p>');
-        $('#games').append('<p> Deck : ' + game.results[0].deck + '</p>');
-        $('#games').append('<p> Desc: ' + game.results[0].description + '</p>');
-    }
-</script>
+@Scripts.Render("~/bundles/WebService")
 
 @*<div class="row">
         <div class="col-md-8">
