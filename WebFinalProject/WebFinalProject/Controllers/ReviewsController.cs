@@ -112,8 +112,10 @@ namespace WebFinalProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.GameId = new SelectList(db.Games, "Id", "Title", review.GameId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", review.UserId);
+
+            ViewBag.GameID = review.GameId;
+            ViewBag.GameTitle = db.Games.Find(review.GameId).Title;
+
             return View(review);
         }
 
@@ -137,11 +139,16 @@ namespace WebFinalProject.Controllers
 
                 db.Games.Find(review.GameId).AverageScore = (int)gameReviews.Average();
 
+                review.UserId = User.Identity.GetUserId();
+                review.ReviewDate = DateTime.Now;
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.GameId = new SelectList(db.Games, "Id", "Title", review.GameId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", review.UserId);
+
+            ViewBag.GameID = review.GameId;
+            ViewBag.GameTitle = db.Games.Find(review.GameId).Title;
+
             return View(review);
         }
 

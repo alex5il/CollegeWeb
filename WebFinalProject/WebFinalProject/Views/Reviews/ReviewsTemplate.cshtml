@@ -29,7 +29,7 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr class="tr-clickable" onclick="location.href = '@Url.Action("Details", new{id = item.Id})'">
             <td>
                 @Html.DisplayFor(modelItem => item.Game.Title)
             </td>
@@ -49,9 +49,12 @@
                 @Html.DisplayFor(modelItem => item.ReviewDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @if (User.IsInRole("Admin"))
+                {
+                    <div> @Html.ActionLink("Edit", "Edit", new { id = item.Id }) </div>
+                    <div> @Html.ActionLink("Details", "Details", new { id = item.Id }) </div>
+                    <div> @Html.ActionLink("Delete", "Delete", new { id = item.Id }) </div>
+                }
             </td>
         </tr>
     }
