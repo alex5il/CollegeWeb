@@ -14,7 +14,6 @@ namespace WebFinalProject.Controllers
     public class ReviewsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET : Reviews - paged
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {

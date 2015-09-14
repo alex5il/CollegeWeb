@@ -6,6 +6,41 @@
 
 <h2>Details</h2>
 
+
+<!--
+    <section>
+    <article class="blogPost">
+        <header>
+            <h2>@Model.Title</h2>
+            <p>Posted on <time>@Html.DisplayFor(model => model.ReviewDate)</time> by <a href="#">@Model.User.Email</a> - <a href="#comments">@Model.postComments.Count comments</a></p>
+        </header>
+
+        <div>
+            <p>@Model.post.Content</p>
+        </div>
+
+        <div>
+            @if (File.Exists(Server.MapPath("~/Uploads/") + Model.post.ID + ".png"))
+            {
+                <img src="~/Uploads/@(Model.post.ID + ".png")" width="400" />
+            }
+        </div>
+
+        <div>
+            @if (File.Exists(Server.MapPath("~/Uploads/") + Model.post.ID + ".mp4"))
+            {
+                <video controls="controls" style="width:400px;">
+                    <source src="~/Uploads/@(Model.post.ID + ".mp4")" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            }
+        </div>
+
+    </article>
+</section>
+    -->
+
+
 <div>
     <h4>Review</h4>
     <hr />
