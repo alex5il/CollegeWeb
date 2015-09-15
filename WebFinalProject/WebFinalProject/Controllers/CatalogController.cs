@@ -44,6 +44,17 @@ namespace WebFinalProject.Controllers
             return Request.IsAjaxRequest() ? (ActionResult)PartialView("CatalogTemplate", model) : View(model);
         }
 
+        public ActionResult TopRatedGames()
+        {
+            var games = (from g in db.Games
+                         orderby g.AverageScore
+                         select g).Take(5);
+
+            var model = games.ToList();
+
+            return (ActionResult)PartialView("_TopGameList", model);
+        }
+
         // GET: Catalog/Details/5
         public ActionResult Details(int? id)
         {

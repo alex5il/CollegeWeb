@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WebFinalProject.Models.Review>
+
+
+<div class="top-list">
+
+
+    @if (Model != null)
+    {
+        
+    <ul>
+
+        @foreach (var item in Model)
+        {
+            <li onclick="location.href = '@Url.Action("Details", "Reviews", new{id = item.Id})'">
+                <div class="item-description">
+                    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+                    <div><b>Game: </b> @item.Game.Title</div>
+                    <div><b>By: </b> @Html.DisplayFor(modelItem => item.User.UserName)</div>
+                    <div><b>Review Date: </b> @Html.DisplayFor(modelItem => item.ReviewDate)</div>
+
+                </div>
+
+                <div class="item-rating"><b>@Html.DisplayFor(modelItem => item.Score)</b></div>
+            </li>
+        }
+
+    </ul>
+    } else
+    {
+        <b>There are no games yet ...</b>
+    }
+</div>
+
+
+
+

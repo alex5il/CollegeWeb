@@ -71,7 +71,9 @@ nav.colored {
 
 .top-list li img {
     float: left;
-    margin: 0 15px 0 0;
+    margin: 50px 25px 0 0;
+    width: 70px;
+    height: 70px;
 }
 
 .top-list li p {
@@ -83,10 +85,10 @@ nav.colored {
     overflow: auto;
 }
 
-    .top-list li:hover {
-        background: #eee;
-        cursor: pointer;
-    }
+.top-list li:hover {
+    background: #F4FDCF;
+    cursor: pointer;
+}
 
 .top-list div.item-description {
     display: inline-block;
@@ -94,12 +96,21 @@ nav.colored {
 
 .top-list div.item-rating {
     display: inline-block;
-    height: 50px;
-    width: 50px;
+    height: 25px;
+    width: 40px;
     vertical-align: top;
-    text-align: center;
-    padding-top: 20px;
     font-size: large;
+
+    margin-top: 20px;
+
+    background: #26272b;
+    box-shadow: rgba(0,0,0,0.75) 0 0 3px,rgba(255,255,255,0.3) 0 0 1px inset;
+    color: #f1f1f4;
+    text-shadow: rgba(0,0,0,0.5) 0 1px 5px;
+    text-align: center;
+    font-family: "proxima-nova","Helvetica Neue Light","Helvetica Neue",sans-serif;
+    font-weight: 600;
+    border-radius: 400px;
 }
 
 /* ========== Text ============= */
@@ -220,10 +231,10 @@ section article.review-post {
     cursor: pointer;
 }
 
-    .tr-clickable:hover td {
-        cursor: pointer;
-        background-color: #F4FDCF;
-    }
+.tr-clickable:hover td {
+    cursor: pointer;
+    background-color: #F4FDCF;
+}
 
 /* ========== Loading Spinner ============= */
 #fountainG {

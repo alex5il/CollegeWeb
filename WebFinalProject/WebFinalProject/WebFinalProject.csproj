@@ -269,7 +269,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_CarouselPartial.cshtml" />
-    <Content Include="Views\Shared\_TopList.cshtml" />
+    <Content Include="Views\Shared\_TopGameList.cshtml" />
     <Content Include="Views\Catalog\Create.cshtml" />
     <Content Include="Views\Catalog\Delete.cshtml" />
     <Content Include="Views\Catalog\Details.cshtml" />
@@ -293,6 +293,7 @@
     <Content Include="Views\Reviews\ReviewsTemplate.cshtml" />
     <Content Include="Views\Catalog\CatalogTemplate.cshtml" />
     <Content Include="Views\Home\WebServiceTemplate.cshtml" />
+    <Content Include="Views\Shared\_LatestReviews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
