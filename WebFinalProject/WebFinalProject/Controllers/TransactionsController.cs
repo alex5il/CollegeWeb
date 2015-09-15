@@ -21,6 +21,12 @@ namespace WebFinalProject.Controllers
             return View(transactions.ToList());
         }
 
+        [HttpPost]
+        public ActionResult AddToCart(int GameId, int? ammount)
+        {
+            return View();
+        }
+
         // GET: Transactions/Details/5
         public ActionResult Details(int? id)
         {
@@ -34,7 +40,7 @@ namespace WebFinalProject.Controllers
                 return HttpNotFound();
             }
             return View(transaction);
-        }
+        }   
 
         // GET: Transactions/Create
         public ActionResult Create()

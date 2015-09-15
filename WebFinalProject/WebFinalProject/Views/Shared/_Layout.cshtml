@@ -34,7 +34,7 @@
                         {
                             if (User.IsInRole("User"))
                             {
-                                <li>@Html.ActionLink("Shopping cart", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Shopping cart", "Index", "Transactions")</li>
                                 <li>@Html.ActionLink("My Transactions", "Index", "Transactions")</li>
                             }
 
@@ -43,8 +43,8 @@
                                 <li class="dropdown">
                                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Manage geners</a></li>
-                                        <li><a href="#">Manage transactions</a></li>
+                                        <li>@Html.ActionLink("Manage geners", "Index", "Genres")</li>
+                                        <li>@Html.ActionLink("Manage transactions", "Index", "Transactions")</li>
                                     </ul>
                                 </li>
                             }
@@ -74,8 +74,7 @@
 
     @Scripts.Render("~/bundles/layout")
     @Scripts.Render("~/bundles/pagingScript")
-
-    @Scripts.Render("~/bundles/game")
+    
 
     @RenderSection("scripts", required: false)
 

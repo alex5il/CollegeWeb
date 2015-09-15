@@ -19,4 +19,14 @@
             pieOuterRadius: null
         },
     });
+
+    // Dynamic thumb by value of the score
+    var score = (+$(".game-score").text()) || 0;
+    if (score > 60) {
+        // add thumb up
+        $(".review-icon").addClass("glyphicon glyphicon-thumbs-up");
+    } else {
+        // add thumb down
+        $(".review-icon").addClass("glyphicon glyphicon-thumbs-down");
+    }
 });

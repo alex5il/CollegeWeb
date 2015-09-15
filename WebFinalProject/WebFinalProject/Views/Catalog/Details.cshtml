@@ -31,19 +31,20 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row score-badge">
             <div class="col-xs-4 game-score">
                 @Html.DisplayFor(model => model.AverageScore)
             </div>
+            <div class="col-xs-4 glyphicon review-icon"></div>
         </div>
 
         <div class="row">
             <div class="col-xs-3">
-                @Html.ActionLink("Review game", "Create", "Reviews", new { gameId = Model.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink(" Review", "Create", "Reviews", new { gameId = Model.Id }, new { @class = "btn btn-primary glyphicon glyphicon-align-justify" })
             </div>
 
             <div class="col-xs-3">
-                @Html.ActionLink("Add to cart", "Create", "Transaction", new { gameId = Model.Id }, new { @class = "btn btn-success" })
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#purchaseModal">Purchase</button>
             </div>
         </div>
 
@@ -73,8 +74,45 @@
 
 </div>
 
+
+<!-- Purchase Modal -->
+<div class="modal fade" id="purchaseModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Purchase - @Html.DisplayFor(model => model.Title)</h4>
+            </div>
+            @using (Html.BeginForm("AddToCart", "Transactions", FormMethod.Post))
+            {
+                @Html.Hidden("GameId", Model.Id)
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-xs-5">Ammount to purchase: </label>
+                            <input type="number" name="ammount" min="1" class="col-xs-1 form-control" value="1" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-success glyphicon glyphicon-shopping-cart" value="Add" />
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+
 <script>
     var badReview = '@ViewBag.Bad' || 0;
     var goodReview = '@ViewBag.Good' || 0; 
     var greatReview = '@ViewBag.Great' || 0; 
 </script>
+
+@Scripts.Render("~/bundles/game")

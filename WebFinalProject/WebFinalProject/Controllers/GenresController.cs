@@ -15,12 +15,14 @@ namespace WebFinalProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Genres
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.Genres.ToList());
         }
 
         // GET: Genres/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace WebFinalProject.Controllers
         }
 
         // GET: Genres/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace WebFinalProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,Name,Description")] Genre genre)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace WebFinalProject.Controllers
         }
 
         // GET: Genres/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace WebFinalProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,Name,Description")] Genre genre)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace WebFinalProject.Controllers
         }
 
         // GET: Genres/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace WebFinalProject.Controllers
         // POST: Genres/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Genre genre = db.Genres.Find(id);
