@@ -21,6 +21,13 @@ namespace WebFinalProject.Controllers
             return View(transactions.ToList());
         }
 
+        [HttpPost]
+        public ActionResult AddToCart(int GameId, int? ammount)
+        {
+            var transactions = db.Transactions.Include(t => t.User);
+            return View(transactions.ToList());
+        }
+
         // GET: Transactions/Details/5
         public ActionResult Details(int? id)
         {
