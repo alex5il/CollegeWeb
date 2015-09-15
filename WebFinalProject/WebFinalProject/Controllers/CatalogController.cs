@@ -113,6 +113,7 @@ namespace WebFinalProject.Controllers
         {
             if (ModelState.IsValid)
             {
+                game.AverageScore = 0;
                 db.Games.Add(game);
                 db.SaveChanges();
 
