@@ -9,18 +9,20 @@
 <h2>Most popular games from <a href="http://www.giantbomb.com/">GiantBomb.com</a></h2>
 <hr>
 
-<section id="games"></section>
-
-@Scripts.Render("~/bundles/WebService")
+<section id="WebService">
+    @Html.Partial("WebServiceTemplate")
+</section>
 
 @*<div class="row">
         <div class="col-md-8">
             <h2>latest review</h2>
             <div id="dynamiccontent">
-                @html.partial("latestreviewstemplate", model)
+                @Html.Partial("latestreviewstemplate", model)
             </div>
         </div>
         <div class="col-md-4">
-            @html.partial("_toplist")
+            @Html.Partial("_TopList")
         </div>
     </div>*@
+
+@Scripts.Render("~/bundles/WebService")

@@ -292,7 +292,7 @@
     <Content Include="Views\Genres\Index.cshtml" />
     <Content Include="Views\Reviews\ReviewsTemplate.cshtml" />
     <Content Include="Views\Catalog\CatalogTemplate.cshtml" />
-    <Content Include="Views\Home\LatestReviewsTemplate.cshtml" />
+    <Content Include="Views\Home\WebServiceTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

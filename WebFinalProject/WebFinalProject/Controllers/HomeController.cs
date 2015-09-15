@@ -15,20 +15,16 @@ namespace WebFinalProject.Controllers
         // Index also returns ajax request for latest reviews
         public ActionResult Index(int? page)
         {
-            // Filter parameters
+            ViewBag.page = (page ?? 1);
 
-            var reviews = from r in db.Reviews
-                          select r;
-
-            // Order by desc review date
-            reviews = reviews.OrderByDescending(s => s.ReviewDate);
-
-            int pageSize = 1; // Latest reviews
-            int pageNumber = (page ?? 1); // DEFAULT 1
-
-            var model = reviews.ToPagedList(pageNumber, pageSize);
-
-            return Request.IsAjaxRequest() ? (ActionResult)PartialView("LatestReviewsTemplate", model) : View(model);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("WebServiceTemplate");
+            }
+            else
+            {
+                return View();
+            }
         }
 
 
