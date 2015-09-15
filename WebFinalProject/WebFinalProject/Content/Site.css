@@ -155,7 +155,7 @@ nav.colored {
 }
 
 /* ========== Game details ============= */
-.game-score {
+.score-badge .game-score {
     background: #26272b;
     box-shadow: rgba(0,0,0,0.75) 0 0 3px,rgba(255,255,255,0.3) 0 0 1px inset;
     color: #f1f1f4;
@@ -173,6 +173,12 @@ nav.colored {
 
     margin-top: 40px;
     margin-bottom: 40px;
+}
+
+.score-badge .review-icon {
+    font-size: 70px;
+    text-align:center;
+    line-height: 175px;
 }
 
 .bottom-links {

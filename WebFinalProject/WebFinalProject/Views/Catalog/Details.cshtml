@@ -31,19 +31,20 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row score-badge">
             <div class="col-xs-4 game-score">
                 @Html.DisplayFor(model => model.AverageScore)
             </div>
+            <div class="col-xs-4 glyphicon review-icon"></div>
         </div>
 
         <div class="row">
             <div class="col-xs-3">
-                @Html.ActionLink("Review game", "Create", "Reviews", new { gameId = Model.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink(" Review", "Create", "Reviews", new { gameId = Model.Id }, new { @class = "btn btn-primary glyphicon glyphicon-align-justify" })
             </div>
 
             <div class="col-xs-3">
-                @Html.ActionLink("Add to cart", "Create", "Transaction", new { gameId = Model.Id }, new { @class = "btn btn-success" })
+                @Html.ActionLink(" Purchase", "Create", "Transaction", new { gameId = Model.Id }, new { @class = "btn btn-success glyphicon glyphicon-shopping-cart" })
             </div>
         </div>
 
@@ -78,3 +79,5 @@
     var goodReview = '@ViewBag.Good' || 0; 
     var greatReview = '@ViewBag.Great' || 0; 
 </script>
+
+@Scripts.Render("~/bundles/game")
