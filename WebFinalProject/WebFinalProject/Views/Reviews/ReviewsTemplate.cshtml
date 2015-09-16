@@ -66,10 +66,3 @@
 <div class="pagedList" data-otf-target="#dynamicContent">
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 </div>
-
-<!--
-    THIS IS MVC solution
-
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }),
-    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "dynamicContent" }))-->

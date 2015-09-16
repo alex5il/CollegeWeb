@@ -1,9 +1,5 @@
 ﻿@model IEnumerable<WebFinalProject.Models.Game>
 
-@{
-    ViewBag.Title = "Catalog";
-}
-
 <h2>Game Catalog</h2>
 
 @if (User.IsInRole("Admin"))
@@ -17,11 +13,36 @@
       data-otf-ajax="true" data-otf-target="#dynamicContent">
 
     <label>Filters</label>
-    <div>
-        Game Title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+    <div class="row filters-catalog">
+        <div class="by-name">
+            Game Title:
+        </div>
+        <div class="col-xs-2">
+            @Html.TextBox("searchString", "", new { @class = "form-control" })
+        </div>
+
+        <div class="by-genre">
+            Genre: 
+        </div>
+        <div class="col-xs-2">
+            @Html.DropDownList("genreFilter", new SelectList(ViewBag.Genres), "Choose genre", new { @class = "form-control" })
+        </div>
+        <div class="by-score">
+            Score Above:
+        </div>
+        <div class="col-xs-1">
+            <input type="number" name="scoreAbove" min="0" max="100" value="0" class="form-control" />
+        </div>
+
+        <div class="col-xs-1">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+
     </div>
-    <input type="submit" value="Search" />
 </form>
+
+    <br/>
+    <br />
 
 <div id="dynamicContent">
     @Html.Partial("CatalogTemplate", Model)

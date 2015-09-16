@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebFinalProject.Models;
 using PagedList;
+using LinqKit;
 
 namespace WebFinalProject.Controllers
 {
@@ -17,22 +18,28 @@ namespace WebFinalProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Catalog
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Index(string searchString, string genreFilter, int? scoreAbove, int? page)
         {
-
-            // Filter parameters
-            ViewBag.CurrentFilter = searchString;
-            ViewBag.CurrentSort = sortOrder;
-
             var games = from g in db.Games
                         select g;
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                games = games.Where(g => g.Title.Contains(searchString)
-                                    || g.Description.Contains(searchString));
-            }
+            ViewBag.Genres = from g in db.Genres
+                             select g.Name;
 
+            if (Request.IsAjaxRequest())
+            {
+                var predicate = PredicateBuilder.False<Game>();
+
+                if (!String.IsNullOrEmpty(searchString)) predicate = predicate.Or(game => game.Title.Contains(searchString));
+
+                if (!String.IsNullOrEmpty(genreFilter)) predicate = predicate.Or(game => game.Genre.Name.Equals(genreFilter));
+
+                // int is always not null
+                predicate = predicate.Or(game => game.AverageScore >= scoreAbove);
+
+                games = games.AsExpandable().Where(predicate);
+            }
+            
             // Order by desc release date
             games = games.OrderByDescending(g => g.ReleaseDate);
 
