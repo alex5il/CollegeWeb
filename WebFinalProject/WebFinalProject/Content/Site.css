@@ -420,3 +420,18 @@ section article.review-post {
 .modal-body input.form-control {
     max-width: 75px;
 }
+
+/* ========== purchase modal ============= */
+.filters-catalog .by-name,
+.filters-catalog .by-email,
+.filters-catalog .by-score,
+.filters-catalog .by-genre {
+    max-width: 105px;
+    display: inline-block;
+    float:left;
+    margin-left: 15px;
+
+    height: 20px;
+    line-height: 33px;
+    vertical-align: middle;
+}

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using WebFinalProject.Models;
 using PagedList;
 using Microsoft.AspNet.Identity;
+using LinqKit;
 
 namespace WebFinalProject.Controllers
 {
@@ -16,23 +17,27 @@ namespace WebFinalProject.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET : Reviews - paged
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Index(string searchString, string emailFilter, int? scoreAbove, int? page)
         {
-            // Filter parameters
-            ViewBag.CurrentFilter = searchString;
-            ViewBag.CurrentSort = sortOrder;
-
             var reviews = from r in db.Reviews
                           select r;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (Request.IsAjaxRequest())
             {
-                reviews = reviews.Where(r => r.Title.Contains(searchString)
-                                       || r.Game.Title.Contains(searchString));
+                var predicate = PredicateBuilder.False<Review>();
+
+                if (!String.IsNullOrEmpty(searchString)) predicate = predicate.Or(review => review.Game.Title.Contains(searchString));
+
+                if (!String.IsNullOrEmpty(emailFilter)) predicate = predicate.Or(review => review.User.UserName.Contains(emailFilter));
+
+                // int is always not null
+                predicate = predicate.Or(game => game.Score>= scoreAbove);
+
+                reviews = reviews.AsExpandable().Where(predicate);
             }
 
-            // Order by desc review date
-            reviews = reviews.OrderByDescending(s => s.ReviewDate);
+            // Order by desc release date
+            reviews = reviews.OrderByDescending(g => g.ReviewDate);
 
             int pageSize = 3;
             int pageNumber = (page ?? 1); // DEFAULT 1
