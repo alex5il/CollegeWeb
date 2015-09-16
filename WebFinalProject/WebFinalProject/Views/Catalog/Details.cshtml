@@ -10,9 +10,9 @@
         <div class="row">
             <div class="col-xs-5">
                 @if (File.Exists(Server.MapPath("~/Content/Media/") + Model.Id + "thumbnail.png"))
-                {
-                    <img src="~/Content/Media/@(Model.Id + "thumbnail.png")" width="150" height="150" />
-                }
+{
+    <img src="~/Content/Media/@(Model.Id + "thumbnail.png")" width="150" height="150" />
+}
                 
                 else
                 {
@@ -63,7 +63,7 @@
 
 
         <div class="row bottom-links">
-            <div class="col-xs-4" >
+            <div class="col-xs-4">
                 @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
                 @Html.ActionLink("Back to List", "Index")
             </div>
@@ -88,13 +88,15 @@
             </div>
             @using (Html.BeginForm("AddToCart", "Transactions", FormMethod.Post))
             {
+                @Html.AntiForgeryToken();
+
                 @Html.Hidden("GameId", Model.Id)
 
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="row">
                             <label class="col-xs-5">Ammount to purchase: </label>
-                            <input type="number" name="ammount" min="1" class="col-xs-1 form-control" value="1" />
+                            <input type="number" name="amount" min="1" class="col-xs-1 form-control" value="1" />
                         </div>
                     </div>
                 </div>
