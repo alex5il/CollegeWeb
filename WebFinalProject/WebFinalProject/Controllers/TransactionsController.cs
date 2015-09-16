@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebFinalProject.Models;
+using Microsoft.AspNet.Identity;
 
 namespace WebFinalProject.Controllers
 {
@@ -21,10 +22,51 @@ namespace WebFinalProject.Controllers
             return View(transactions.ToList());
         }
 
-        [HttpPost]
-        public ActionResult AddToCart(int GameId, int? ammount)
+        public ActionResult ShoppingCart()
         {
-            return View();
+            return View(Cart.GetCart(this));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToCart(int GameId, int? amount)
+        {
+            if (!Cart.AddToCart(this, GameId, amount))
+            {
+                return HttpNotFound();
+            }
+
+            return View("ShoppingCart", Cart.GetCart(this));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RemoveFromCart(int GameId, int? amount)
+        {
+            if (!Cart.RemoveFromCart(this, GameId, amount))
+            {
+                return HttpNotFound();
+            }
+
+            return View("ShoppingCart", Cart.GetCart(this));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EmptyCart()
+        {
+            Cart.EmptyCart(this);
+
+            return View("ShoppingCart", Cart.GetCart(this));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckOut()
+        {
+            Cart.CheckOut(this, User.Identity.GetUserId());
+
+            return RedirectToAction("Index");
         }
 
         // GET: Transactions/Details/5
@@ -40,7 +82,7 @@ namespace WebFinalProject.Controllers
                 return HttpNotFound();
             }
             return View(transaction);
-        }   
+        }
 
         // GET: Transactions/Create
         public ActionResult Create()
