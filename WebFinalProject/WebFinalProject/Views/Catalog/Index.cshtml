@@ -16,7 +16,10 @@
 <form method="get" action="@Url.Action("Index")"
       data-otf-ajax="true" data-otf-target="#dynamicContent">
 
-    Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+    <label>Filters</label>
+    <div>
+        Game Title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+    </div>
     <input type="submit" value="Search" />
 </form>
 

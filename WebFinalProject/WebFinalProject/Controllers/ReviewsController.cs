@@ -42,6 +42,17 @@ namespace WebFinalProject.Controllers
             return Request.IsAjaxRequest() ? (ActionResult)PartialView("ReviewsTemplate", model) : View(model);
         }
 
+        public ActionResult LatestReviews()
+        {
+            var reviews = (from r in db.Reviews
+                         orderby r.ReviewDate descending
+                         select r).Take(5);
+
+            var model = reviews.ToList();
+
+            return (ActionResult)PartialView("_LatestReviews", model);
+        }
+
         // GET: Reviews/Details/5
         public ActionResult Details(int? id)
         {

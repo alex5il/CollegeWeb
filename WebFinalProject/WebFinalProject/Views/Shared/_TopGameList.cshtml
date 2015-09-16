@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebFinalProject.Models.Game>
+
+
+<div class="top-list">
+
+
+    @if (Model != null)
+    {
+        
+    <ul>
+
+        @foreach (var item in Model)
+        {
+        <li onclick="location.href = '@Url.Action("Details", "Catalog", new{id = item.Id})'">
+            @if (File.Exists(Server.MapPath("~/Content/Media/") + item.Id + "thumbnail.png"))
+                {
+                <img src="~/Content/Media/@(item.Id + "thumbnail.png")" />
+                }
+
+                else
+                {
+                <img src="~/Content/Media/no_pic.png" />
+                }
+
+            <div class="item-description">
+                <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+                <div><b>Genre:</b> @Html.DisplayFor(modelItem => item.Genre.Name)</div>
+
+                <div><b>Release Date:</b> @Html.DisplayFor(modelItem => item.ReleaseDate)</div>
+
+                <div><b>Description:</b> @Html.DisplayFor(modelItem => item.Description)</div>
+
+                <div><b>Cost:</b> @Html.DisplayFor(modelItem => item.Cost)</div>
+            </div>
+
+            <div class="item-rating"><b>@Html.DisplayFor(modelItem => item.AverageScore)</b></div>
+        </li>
+        }
+
+    </ul>
+    } else
+    {
+        <b>There are no games yet ...</b>
+    }
+</div>
+
+
+
+
