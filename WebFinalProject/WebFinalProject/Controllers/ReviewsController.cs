@@ -74,6 +74,7 @@ namespace WebFinalProject.Controllers
         }
 
         // GET: Reviews/Create
+        [Authorize(Roles = "User")]
         public ActionResult Create(int gameId)
         {
             ViewBag.GameID = gameId;
@@ -88,6 +89,7 @@ namespace WebFinalProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "User")]
         public ActionResult Create([Bind(Include = "Id,Title,Content,Score,ReviewDate,UserId,GameId")] Review review)
         {
             if (ModelState.IsValid)
@@ -117,6 +119,7 @@ namespace WebFinalProject.Controllers
         }
 
         // GET: Reviews/Edit/5
+        [Authorize(Roles = "User")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -140,6 +143,7 @@ namespace WebFinalProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "User")]
         public ActionResult Edit([Bind(Include = "Id,Title,Content,Score,ReviewDate,UserId,GameId")] Review review)
         {
             if (ModelState.IsValid)
@@ -169,6 +173,7 @@ namespace WebFinalProject.Controllers
         }
 
         // GET: Reviews/Delete/5
+        [Authorize(Roles = "User")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -186,6 +191,7 @@ namespace WebFinalProject.Controllers
         // POST: Reviews/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "User")]
         public ActionResult DeleteConfirmed(int id)
         {
             Review review = db.Reviews.Find(id);
