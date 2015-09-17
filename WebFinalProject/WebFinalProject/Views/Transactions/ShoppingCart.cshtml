@@ -47,7 +47,7 @@
                     <img src="~/Content/Media/no_pic.png" width="100" height="100" />
                 }
             </td>
-            <td>
+            <td class="td-c">
                 @Html.DisplayFor(modelItem => item.Game.Title)
             </td>
             <td>
@@ -68,7 +68,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
-            <td>
+            <td class="td-unclickable">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteModal">Delete</button>
             </td>
             <td>
@@ -142,3 +142,5 @@
         </div>
     </div>
 }
+
+@Scripts.Render("~/bundles/stopPropagation")

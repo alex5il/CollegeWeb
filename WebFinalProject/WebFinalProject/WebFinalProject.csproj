@@ -236,6 +236,7 @@
     <Content Include="Scripts\SiteJS\gameDetails.js" />
     <Content Include="Scripts\SiteJS\pagingScript.js" />
     <Content Include="Scripts\SiteJS\layout.js" />
+    <Content Include="Scripts\SiteJS\stopPropagation.js" />
     <Content Include="Scripts\SiteJS\WebService.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />

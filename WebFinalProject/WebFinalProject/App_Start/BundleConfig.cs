@@ -43,6 +43,9 @@ namespace WebFinalProject
 
             bundles.Add(new ScriptBundle("~/bundles/WebService").Include(
                         "~/Scripts/SiteJS/WebService.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/stopPropagation").Include(
+                        "~/Scripts/SiteJS/stopPropagation.js"));
         }
     }
 }

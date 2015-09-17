@@ -85,10 +85,10 @@ nav.colored {
     overflow: auto;
 }
 
-.top-list li:hover {
-    background: #F4FDCF;
-    cursor: pointer;
-}
+    .top-list li:hover {
+        background: #F4FDCF;
+        cursor: pointer;
+    }
 
 .top-list div.item-description {
     display: inline-block;
@@ -100,9 +100,7 @@ nav.colored {
     width: 40px;
     vertical-align: top;
     font-size: large;
-
     margin-top: 20px;
-
     background: #26272b;
     box-shadow: rgba(0,0,0,0.75) 0 0 3px,rgba(255,255,255,0.3) 0 0 1px inset;
     color: #f1f1f4;
@@ -188,7 +186,7 @@ nav.colored {
 
 .score-badge .review-icon {
     font-size: 70px;
-    text-align:center;
+    text-align: center;
     line-height: 175px;
 }
 
@@ -231,10 +229,10 @@ section article.review-post {
     cursor: pointer;
 }
 
-.tr-clickable:hover td {
-    cursor: pointer;
-    background-color: #F4FDCF;
-}
+    .tr-clickable:hover td {
+        cursor: pointer;
+        background-color: #F4FDCF;
+    }
 
 /* ========== Loading Spinner ============= */
 #fountainG {
@@ -428,9 +426,8 @@ section article.review-post {
 .filters-catalog .by-genre {
     max-width: 105px;
     display: inline-block;
-    float:left;
+    float: left;
     margin-left: 15px;
-
     height: 20px;
     line-height: 33px;
     vertical-align: middle;
