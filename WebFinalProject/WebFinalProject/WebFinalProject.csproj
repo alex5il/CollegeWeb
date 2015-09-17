@@ -295,6 +295,7 @@
     <Content Include="Views\Catalog\CatalogTemplate.cshtml" />
     <Content Include="Views\Home\WebServiceTemplate.cshtml" />
     <Content Include="Views\Shared\_LatestReviews.cshtml" />
+    <Content Include="Views\Transactions\ShoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
