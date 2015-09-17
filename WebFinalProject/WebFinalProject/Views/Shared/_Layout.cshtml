@@ -35,7 +35,7 @@
                             if (User.IsInRole("User"))
                             {
                                 <li>@Html.ActionLink("Shopping cart", "ShoppingCart", "Transactions")</li>
-                                <li>@Html.ActionLink("My Transactions", "Index", "Transactions")</li>
+                                <li>@Html.ActionLink("My Transactions", "MyTransactions", "Transactions")</li>
                             }
 
                             if (User.IsInRole("Admin"))

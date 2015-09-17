@@ -1,42 +1,84 @@
-﻿@model WebFinalProject.Models.Transaction
+﻿@model IEnumerable<WebFinalProject.Models.Purchase>
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Shopping Cart";
 }
 
-<h2>Details</h2>
+<h2>Shopping Cart</h2>
 
-<div>
-    <h4>Transaction</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.User.Email)
-        </dt>
+<table class="table vertical-table">
+    <tr>
+        <th>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Game.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Game.Genre.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Game.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Game.ReleaseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Game.AverageScore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Game.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Quantity)
+        </th>
+        <th></th>
+    </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.Email)
-        </dd>
+    @foreach (var item in Model)
+    {
+        <tr class="tr-clickable" onclick="location.href = '@Url.Action("Details", "Catalog", new { id = item.Game.Id })'">
+            <td>
+                @if (File.Exists(Server.MapPath("~/Content/Media/") + item.Game.Id + "thumbnail.png"))
+                {
+                    <img src="~/Content/Media/@(item.Game.Id + "thumbnail.png")" width="100" height="100" />
+                }
+                else
+                {
+                    <img src="~/Content/Media/no_pic.png" width="100" height="100" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game.Genre.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game.AverageScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+        </tr>
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cost)
-        </dt>
+</table>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cost)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TransactionDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TransactionDate)
-        </dd>
-
-    </dl>
+<div class="row">
+    <div class="col-xs-2 col-xs-offset-10">
+        <p><b>Total: @Model.Sum(p => p.Quantity * p.Game.Cost)</b></p>
+    </div>
 </div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", User.IsInRole("Admin") ? "Index" : "MyTransactions")
 </p>
