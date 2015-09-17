@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using WebFinalProject.Models;
 using PagedList;
 using LinqKit;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace WebFinalProject.Controllers
 {
@@ -153,6 +155,31 @@ namespace WebFinalProject.Controllers
 
             ViewBag.GenreId = new SelectList(db.Genres, "Id", "Name", game.GenreId);
             return View(game);
+        }
+
+        [HttpGet]
+        public string BarGraphData()
+        {
+            var innerGroupJoinQuery =
+                            (from game in db.Games
+                            join purchase in db.Purchases on game.Id equals purchase.GameId into purchaseGroup
+                            select new
+                            {
+                                GameID = game.Id,
+                                GameName = game.Title,
+                                GameCost = game.Cost,
+                                TotalCost = purchaseGroup.Sum(x => x.Quantity * x.Game.Cost)
+                            }).OrderByDescending(x => x.TotalCost);
+
+            var serializer = new JavaScriptSerializer();
+
+            if (innerGroupJoinQuery != null)
+            {
+                return serializer.Serialize(innerGroupJoinQuery);
+            }
+
+            return null;
+
         }
 
         // GET: Catalog/Edit/5
