@@ -4,15 +4,16 @@
     ViewBag.Title = "Details";
 }
 
+
 <div class="row">
     <div class="col-xs-6">
 
         <div class="row">
             <div class="col-xs-5">
                 @if (File.Exists(Server.MapPath("~/Content/Media/") + Model.Id + "thumbnail.png"))
-{
-    <img src="~/Content/Media/@(Model.Id + "thumbnail.png")" width="150" height="150" />
-}
+                {
+                    <img src="~/Content/Media/@(Model.Id + "thumbnail.png")" width="150" height="150" />
+                }
                 
                 else
                 {
@@ -111,11 +112,24 @@
     </div>
 </div>
 
+<br/>
+<div class="row bargraph">
+    <div id="tooltip" class="hidden">
+        <img src="~/Content/Media/no_pic.png" id="pic" width="150" height="150" />
+        <span id="alfabet" style='line-height:3em; font:2em sans-serif;'>A</span>
+        <p><span id="value">100</span></p>
+    </div>
+
+    <svg class="chart"></svg>
+</div>
+
 
 <script>
     var badReview = '@ViewBag.Bad' || 0;
     var goodReview = '@ViewBag.Good' || 0; 
     var greatReview = '@ViewBag.Great' || 0; 
 </script>
+
+
 
 @Scripts.Render("~/bundles/game")
