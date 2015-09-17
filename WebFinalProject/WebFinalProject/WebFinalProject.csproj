@@ -233,6 +233,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SiteJS\manageTransactions.js" />
     <Content Include="Scripts\SiteJS\gameDetails.js" />
     <Content Include="Scripts\SiteJS\pagingScript.js" />
     <Content Include="Scripts\SiteJS\layout.js" />

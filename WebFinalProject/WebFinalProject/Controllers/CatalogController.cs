@@ -158,7 +158,7 @@ namespace WebFinalProject.Controllers
         }
 
         [HttpGet]
-        public string barGraphData()
+        public string BarGraphData()
         {
             var innerGroupJoinQuery =
                             (from game in db.Games

@@ -1,41 +1,55 @@
 ﻿@model IEnumerable<WebFinalProject.Models.Transaction>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TransactionDate)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr class="tr-clickable" onclick="location.href = '@Url.Action("Details", "Transactions", new { id = item.Id })'">
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransactionDate)
-            </td>
-        </tr>
+    @{
+        ViewBag.Title = "Index";
     }
 
-</table>
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionDate)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="tr-clickable" onclick="location.href = '@Url.Action("Details", "Transactions", new { id = item.Id })'">
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionDate)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <br />
+    <br />
+
+    <div class="row bargraph">
+        <div id="tooltip" class="hidden">
+            <img src="~/Content/Media/no_pic.png" id="pic" width="100" height="100" />
+            <span id="alfabet" style='line-height:3em; font:2em sans-serif;'>A</span>
+        </div>
+
+        <svg class="chart"></svg>
+    </div>
+
+@Scripts.Render("~/bundles/manageTransactions")

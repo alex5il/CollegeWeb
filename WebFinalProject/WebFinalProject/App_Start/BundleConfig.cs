@@ -37,6 +37,9 @@ namespace WebFinalProject
             bundles.Add(new ScriptBundle("~/bundles/game").Include(
                         "~/Scripts/SiteJS/gameDetails.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/manageTransactions").Include(
+                        "~/Scripts/SiteJS/manageTransactions.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
