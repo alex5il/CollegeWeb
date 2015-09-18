@@ -17,14 +17,7 @@ namespace WebFinalProject.Controllers
         {
             ViewBag.page = (page ?? 1);
 
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("WebServiceTemplate");
-            }
-            else
-            {
-                return View();
-            }
+            return Request.IsAjaxRequest() ? (ActionResult)PartialView("WebServiceTemplate") : View();
         }
 
 

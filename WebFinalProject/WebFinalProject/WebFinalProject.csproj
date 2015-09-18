@@ -237,7 +237,7 @@
     <Content Include="Scripts\SiteJS\gameDetails.js" />
     <Content Include="Scripts\SiteJS\pagingScript.js" />
     <Content Include="Scripts\SiteJS\layout.js" />
-    <Content Include="Scripts\SiteJS\stopPropagation.js" />
+    <Content Include="Scripts\SiteJS\ShoppingCart.js" />
     <Content Include="Scripts\SiteJS\WebService.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -298,6 +298,7 @@
     <Content Include="Views\Home\WebServiceTemplate.cshtml" />
     <Content Include="Views\Shared\_LatestReviews.cshtml" />
     <Content Include="Views\Transactions\ShoppingCart.cshtml" />
+    <Content Include="Views\Transactions\CartTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

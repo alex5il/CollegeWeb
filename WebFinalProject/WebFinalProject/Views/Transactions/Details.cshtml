@@ -75,7 +75,7 @@
 
 <div class="row">
     <div class="col-xs-2 col-xs-offset-10">
-        <p><b>Total: @Model.Sum(p => p.Quantity * p.Game.Cost)</b></p>
+        <p><b>Total: @string.Format("{0:C}", Model.Sum(p => p.Quantity * p.Game.Cost))</b></p>
     </div>
 </div>
 

@@ -61,7 +61,7 @@ namespace WebFinalProject.Controllers
                 return HttpNotFound();
             }
 
-            return View("ShoppingCart", Cart.GetCart(this));
+            return PartialView("CartTemplate", Cart.GetCart(this));
         }
 
         [HttpPost]
@@ -71,7 +71,7 @@ namespace WebFinalProject.Controllers
         {
             Cart.EmptyCart(this);
 
-            return View("ShoppingCart", Cart.GetCart(this));
+            return PartialView("CartTemplate", Cart.GetCart(this));
         }
 
         [HttpPost]

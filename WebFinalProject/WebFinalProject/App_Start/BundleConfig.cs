@@ -47,8 +47,8 @@ namespace WebFinalProject
             bundles.Add(new ScriptBundle("~/bundles/WebService").Include(
                         "~/Scripts/SiteJS/WebService.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/stopPropagation").Include(
-                        "~/Scripts/SiteJS/stopPropagation.js"));
+            bundles.Add(new ScriptBundle("~/bundles/ShoppingCart").Include(
+                        "~/Scripts/SiteJS/ShoppingCart.js"));
         }
     }
 }
