@@ -47,6 +47,12 @@ namespace WebFinalProject
             bundles.Add(new ScriptBundle("~/bundles/WebService").Include(
                         "~/Scripts/SiteJS/WebService.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/logoJS").Include(
+                        "~/Scripts/SiteJS/canvasLogoInit.js",
+                        "~/Scripts/SiteJS/canvasLogoUtil.js",
+                        "~/Scripts/SiteJS/canvasLogoAnimation.js",
+                        "~/Scripts/SiteJS/canvasLogoClick.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/ShoppingCart").Include(
                         "~/Scripts/SiteJS/ShoppingCart.js"));
         }
