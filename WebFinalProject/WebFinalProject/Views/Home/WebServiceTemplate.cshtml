@@ -1,6 +1,14 @@
 ﻿<div>
     <ul class="pagination">
-        <li><a href="?page=1" rel="first">First</a></li>
+        <li>
+            @Ajax.ActionLink("First", "Index", new { page = 1 }, new AjaxOptions
+                                                                    {
+                                                                        HttpMethod = "GET",
+                                                                        InsertionMode = InsertionMode.Replace,
+                                                                        UpdateTargetId = "WebService",
+                                                                        OnComplete = "ajax_call()"
+                                                                    })
+        </li>
 
         @{
             int i;
@@ -34,7 +42,15 @@
             }
         }
 
-        <li><a href="?page=@i" rel="last">Last</a></li>
+        <li>
+            @Ajax.ActionLink("Last", "Index", new { page = i }, new AjaxOptions
+                                                                    {
+                                                                        HttpMethod = "GET",
+                                                                        InsertionMode = InsertionMode.Replace,
+                                                                        UpdateTargetId = "WebService",
+                                                                        OnComplete = "ajax_call()"
+                                                                    })
+        </li>
     </ul>
 </div>
 
