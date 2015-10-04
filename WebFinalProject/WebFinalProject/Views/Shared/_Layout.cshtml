@@ -32,7 +32,7 @@
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                            if (User.IsInRole("User") || User.IsInRole("Admin"))
+                            if (User.IsInRole("User"))
                             {
                                 <li>@Html.ActionLink("Shopping cart", "ShoppingCart", "Transactions")</li>
                                 <li>@Html.ActionLink("My Transactions", "MyTransactions", "Transactions")</li>
