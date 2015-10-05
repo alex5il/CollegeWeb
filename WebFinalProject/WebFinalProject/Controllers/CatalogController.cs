@@ -56,7 +56,7 @@ namespace WebFinalProject.Controllers
         public ActionResult TopRatedGames()
         {
             var games = (from g in db.Games
-                         orderby g.AverageScore
+                         orderby g.AverageScore descending
                          select g).Take(5);
 
             var model = games.ToList();
