@@ -118,8 +118,8 @@ nav.colored {
 
 /* ========== Video ============= */
 .game-video {
-    width: 400px;
-    height: 400px;
+    width: 200%;
+    height: auto;
 }
 
 /* ========== Drop down menu sliding animation ============= */

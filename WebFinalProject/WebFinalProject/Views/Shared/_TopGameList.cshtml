@@ -12,9 +12,9 @@
         @foreach (var item in Model)
         {
         <li onclick="location.href = '@Url.Action("Details", "Catalog", new{id = item.Id})'">
-            @if (File.Exists(Server.MapPath("~/Content/Media/") + item.Id + "thumbnail.png"))
+            @if (File.Exists(Server.MapPath("~/Content/Media/") + item.Id + "image.png"))
                 {
-                <img src="~/Content/Media/@(item.Id + "thumbnail.png")" />
+                <img src="~/Content/Media/@(item.Id + "image.png")" />
                 }
 
                 else

@@ -41,7 +41,7 @@ namespace WebFinalProject.Controllers
 
                 games = games.AsExpandable().Where(predicate);
             }
-            
+
             // Order by desc release date
             games = games.OrderByDescending(g => g.ReleaseDate);
 
@@ -118,7 +118,7 @@ namespace WebFinalProject.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,Title,Description,AverageScore,ReleaseDate,Cost,GenreId")] Game game,
-                                   HttpPostedFileBase titleImg, HttpPostedFileBase thumbnailImg, HttpPostedFileBase video)
+                                   HttpPostedFileBase image, HttpPostedFileBase video)
         {
             if (ModelState.IsValid)
             {
@@ -129,24 +129,17 @@ namespace WebFinalProject.Controllers
                 string fileName;
                 string path;
 
-                if (titleImg != null && titleImg.ContentLength > 0)
+                if (image != null && image.ContentLength > 0)
                 {
-                    fileName = game.Id + "title.png";
+                    fileName = game.Id + "image.png";
                     path = Server.MapPath("~/Content/Media/");
-                    titleImg.SaveAs(Path.Combine(path, fileName));
-                }
-
-                if (thumbnailImg != null && thumbnailImg.ContentLength > 0)
-                {
-                    fileName = game.Id + "title.png";
-                    path = Server.MapPath("~/Content/Media/");
-                    thumbnailImg.SaveAs(Path.Combine(path, fileName));
+                    image.SaveAs(Path.Combine(path, fileName));
                 }
 
                 if (video != null && video.ContentLength > 0)
                 {
                     fileName = game.Id + ".mp4";
-                    path = Server.MapPath("~/Uploads");
+                    path = Server.MapPath("~/Content/Media/");
                     video.SaveAs(Path.Combine(path, fileName));
                 }
 
@@ -162,14 +155,14 @@ namespace WebFinalProject.Controllers
         {
             var innerGroupJoinQuery =
                             (from game in db.Games
-                            join purchase in db.Purchases on game.Id equals purchase.GameId into purchaseGroup
-                            select new
-                            {
-                                GameID = game.Id,
-                                GameName = game.Title,
-                                GameCost = game.Cost,
-                                TotalCost = purchaseGroup.Sum(x => x.Quantity * x.Game.Cost)
-                            }).OrderByDescending(x => x.TotalCost);
+                             join purchase in db.Purchases on game.Id equals purchase.GameId into purchaseGroup
+                             select new
+                             {
+                                 GameID = game.Id,
+                                 GameName = game.Title,
+                                 GameCost = game.Cost,
+                                 TotalCost = purchaseGroup.Sum(x => x.Quantity * x.Game.Cost)
+                             }).OrderByDescending(x => x.TotalCost);
 
             var serializer = new JavaScriptSerializer();
 
@@ -205,12 +198,31 @@ namespace WebFinalProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,AverageScore,ReleaseDate,Cost,GenreId")] Game game)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,AverageScore,ReleaseDate,Cost,GenreId")] Game game,
+                                    HttpPostedFileBase image, HttpPostedFileBase video)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(game).State = EntityState.Modified;
                 db.SaveChanges();
+
+                string fileName;
+                string path;
+
+                if (image != null && image.ContentLength > 0)
+                {
+                    fileName = game.Id + "image.png";
+                    path = Server.MapPath("~/Content/Media/");
+                    image.SaveAs(Path.Combine(path, fileName));
+                }
+
+                if (video != null && video.ContentLength > 0)
+                {
+                    fileName = game.Id + ".mp4";
+                    path = Server.MapPath("~/Content/Media/");
+                    video.SaveAs(Path.Combine(path, fileName));
+                }
+
                 return RedirectToAction("Index");
             }
             ViewBag.GenreId = new SelectList(db.Genres, "Id", "Name", game.GenreId);
