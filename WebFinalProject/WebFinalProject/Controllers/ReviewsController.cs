@@ -24,14 +24,14 @@ namespace WebFinalProject.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                var predicate = PredicateBuilder.False<Review>();
+                var predicate = PredicateBuilder.True<Review>();
 
                 if (!String.IsNullOrEmpty(searchString)) predicate = predicate.And(review => review.Game.Title.Contains(searchString));
 
                 if (!String.IsNullOrEmpty(emailFilter)) predicate = predicate.And(review => review.User.UserName.Contains(emailFilter));
 
                 // int is always not null
-                predicate = predicate.Or(game => game.Score>= scoreAbove);
+                if (scoreAbove != 0) predicate = predicate.And(game => game.Score >= scoreAbove);
 
                 reviews = reviews.AsExpandable().Where(predicate);
             }
