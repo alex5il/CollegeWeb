@@ -8,5 +8,5 @@
 });
 
 function hideModal() {
-    $('#removeModal').modal('hide');
+    $('.modal-backdrop.fade.in').remove();
 }

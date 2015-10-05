@@ -21,6 +21,9 @@
 </section>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @if (User.Identity.IsAuthenticated && User.IsInRole("User") && User.Identity.Name == Model.User.Email)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) @:|
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>
