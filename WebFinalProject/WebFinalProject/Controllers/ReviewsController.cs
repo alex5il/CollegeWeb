@@ -17,7 +17,7 @@ namespace WebFinalProject.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET : Reviews - paged
-        public ActionResult Index(string searchString, string emailFilter, int? scoreAbove, int? page, int? myReviews)
+        public ActionResult Index(string searchString, string emailFilter, int? scoreAbove, int? page, bool myReviews = false)
         {
             var reviews = from r in db.Reviews
                           select r;
@@ -33,7 +33,7 @@ namespace WebFinalProject.Controllers
                 // int is always not null
                 if (scoreAbove != 0) predicate = predicate.And(game => game.Score >= scoreAbove);
 
-                if (myReviews == 1) predicate = predicate.And(review => review.User.UserName == User.Identity.Name);
+                if (myReviews) predicate = predicate.And(review => review.User.UserName == User.Identity.Name);
 
                 reviews = reviews.AsExpandable().Where(predicate);
             }

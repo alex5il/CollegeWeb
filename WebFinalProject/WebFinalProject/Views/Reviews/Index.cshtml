@@ -40,9 +40,8 @@
 
         @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
         {
-            <div>My reviews only:</div>
-            <div>
-                <input data-toggle="toggle" type="checkbox" name="myReviews" />
+            <div class="col-xs-2">
+                @Html.CheckBox("myReviews", new { data_toggle = "toggle", data_off = "All reviews", data_on = "My reviews" })
             </div>
         }
 
