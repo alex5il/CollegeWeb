@@ -47,8 +47,7 @@ nav.colored {
 /*CAROUSEL*/
 
 .img-responsive {
-    width: 65%;
-    margin: 0 auto; /* Align slide image horizontally center */
+    margin: -215px auto; /* Align slide image horizontally center */
 }
 
 .carousel {

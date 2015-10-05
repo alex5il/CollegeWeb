@@ -197,7 +197,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Media\mainPagePics\103324.jpg" />
+    <Content Include="Content\Media\mainPagePics\105366.jpg" />
+    <Content Include="Content\Media\mainPagePics\144312.jpg" />
+    <Content Include="Content\Media\mainPagePics\51198.jpg" />
     <Content Include="Content\Media\A2kFinal.png" />
+    <Content Include="Content\Media\mainPagePics\diablo-iii-warrior-artwork-wide.jpg" />
     <Content Include="Content\Media\GigaGamesLogo.png" />
     <Content Include="Content\Media\no_pic.png" />
     <Content Include="Content\PagedList.css" />
