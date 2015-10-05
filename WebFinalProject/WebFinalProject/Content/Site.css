@@ -248,6 +248,10 @@ div #games p {
     column-count: 2;
 }
 
+div #games h2 {
+    text-shadow: 3px 3px #DDDDDD;
+}
+
 /* ========== Loading Spinner ============= */
 #fountainG {
     position: relative;

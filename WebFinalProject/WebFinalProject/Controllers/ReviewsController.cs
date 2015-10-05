@@ -17,7 +17,7 @@ namespace WebFinalProject.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET : Reviews - paged
-        public ActionResult Index(string searchString, string emailFilter, int? scoreAbove, int? page)
+        public ActionResult Index(string searchString, string emailFilter, int? scoreAbove, int? page, int? myReviews)
         {
             var reviews = from r in db.Reviews
                           select r;
@@ -32,6 +32,8 @@ namespace WebFinalProject.Controllers
 
                 // int is always not null
                 if (scoreAbove != 0) predicate = predicate.And(game => game.Score >= scoreAbove);
+
+                if (myReviews == 1) predicate = predicate.And(review => review.User.UserName == User.Identity.Name);
 
                 reviews = reviews.AsExpandable().Where(predicate);
             }
@@ -50,8 +52,8 @@ namespace WebFinalProject.Controllers
         public ActionResult LatestReviews()
         {
             var reviews = (from r in db.Reviews
-                         orderby r.ReviewDate descending
-                         select r).Take(5);
+                           orderby r.ReviewDate descending
+                           select r).Take(5);
 
             var model = reviews.ToList();
 
@@ -98,8 +100,8 @@ namespace WebFinalProject.Controllers
 
                 // Recalculate game's average score and add it
                 var gameReviews = (from r in db.Reviews
-                              where r.GameId == review.GameId
-                              select r.Score).ToList();
+                                   where r.GameId == review.GameId
+                                   select r.Score).ToList();
 
                 gameReviews.Add(review.Score);
 
@@ -126,7 +128,14 @@ namespace WebFinalProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Review review = db.Reviews.Find(id);
+
+            if (User.Identity.GetUserId() != review.UserId)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             if (review == null)
             {
                 return HttpNotFound();
