@@ -62,12 +62,15 @@
             </div>
         </div>
 
-        <div class="row bottom-links">
-            <div class="col-xs-4">
-                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-                @Html.ActionLink("Back to List", "Index")
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="row bottom-links">
+                <div class="col-xs-4">
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
             </div>
-        </div>
+        }
 
     </div>
 
