@@ -26,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control content-input", @cols = 80, @rows = 10 } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -56,16 +56,9 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Title Image:", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Image:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="titleImg" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Thumbnail Image:", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="thumbnailImg" />
+                <input type="file" name="image" />
             </div>
         </div>
 
