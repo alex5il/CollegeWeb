@@ -71,7 +71,7 @@ nav.colored {
 
 .top-list li img {
     float: left;
-    margin: 50px 25px 0 0;
+    margin: 0px 25px 0 0;
     width: 70px;
     height: 70px;
 }
@@ -96,11 +96,12 @@ nav.colored {
 
 .top-list div.item-rating {
     display: inline-block;
-    height: 25px;
-    width: 40px;
+    height: 35px;
+    width: 60px;
     vertical-align: top;
-    font-size: large;
+    font-size: x-large;
     margin-top: 20px;
+    margin-left: 20px;
     background: #26272b;
     box-shadow: rgba(0,0,0,0.75) 0 0 3px,rgba(255,255,255,0.3) 0 0 1px inset;
     color: #f1f1f4;

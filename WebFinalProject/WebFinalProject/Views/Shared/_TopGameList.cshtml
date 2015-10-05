@@ -12,15 +12,17 @@
         @foreach (var item in Model)
         {
         <li onclick="location.href = '@Url.Action("Details", "Catalog", new{id = item.Id})'">
-            @if (File.Exists(Server.MapPath("~/Content/Media/") + item.Id + "thumbnail.png"))
-                {
-                <img src="~/Content/Media/@(item.Id + "thumbnail.png")" />
-                }
+                @if (File.Exists(Server.MapPath("~/Content/Media/") + item.Id + "thumbnail.png"))
+                    {
+                        <div class="col-xs-4"><img src="~/Content/Media/@(item.Id + "thumbnail.png")" /></div>
+                    }
 
-                else
-                {
-                <img src="~/Content/Media/no_pic.png" />
-                }
+                    else
+                    {
+                    <img src="~/Content/Media/no_pic.png" />
+                    }
+
+                <div class="item-rating"><b>@Html.DisplayFor(modelItem => item.AverageScore)</b></div>
 
             <div class="item-description">
                 <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
@@ -32,8 +34,6 @@
 
                 <div><b>Cost:</b> @Html.DisplayFor(modelItem => item.Cost)</div>
             </div>
-
-            <div class="item-rating"><b>@Html.DisplayFor(modelItem => item.AverageScore)</b></div>
         </li>
         }
 
