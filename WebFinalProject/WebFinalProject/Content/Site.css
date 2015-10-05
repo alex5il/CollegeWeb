@@ -53,7 +53,6 @@ nav.colored {
 .carousel {
     height: 250px;
     background: #2f4357;
-    margin-top: 20px;
     overflow: hidden;
 }
 
@@ -92,15 +91,22 @@ nav.colored {
 .top-list div.item-description {
     display: inline-block;
 }
+.top-list div.item-description label {
+    font-size: large;
+    margin-top:10px;
+    margin-bottom:10px;
+    width: 275px;
+}
 
 .top-list div.item-rating {
     display: inline-block;
+    position:relative;
+    right:0;
+    margin-top:10px;
     height: 35px;
     width: 60px;
     vertical-align: top;
     font-size: x-large;
-    margin-top: 20px;
-    margin-left: 20px;
     background: #26272b;
     box-shadow: rgba(0,0,0,0.75) 0 0 3px,rgba(255,255,255,0.3) 0 0 1px inset;
     color: #f1f1f4;
@@ -110,6 +116,7 @@ nav.colored {
     font-weight: 600;
     border-radius: 400px;
 }
+
 
 /* ========== Text ============= */
 .vertical-table > tbody > tr > td {

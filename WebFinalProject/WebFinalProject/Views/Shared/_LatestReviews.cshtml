@@ -13,14 +13,13 @@
         {
             <li onclick="location.href = '@Url.Action("Details", "Reviews", new{id = item.Id})'">
                 <div class="item-description">
-                    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+                    <label><strong>@Html.DisplayFor(modelItem => item.Title)</strong></label>
+                    <div class="item-rating"><b>@Html.DisplayFor(modelItem => item.Score)</b></div>
                     <div><b>Game: </b> @item.Game.Title</div>
                     <div><b>By: </b> @Html.DisplayFor(modelItem => item.User.UserName)</div>
                     <div><b>Review Date: </b> @Html.DisplayFor(modelItem => item.ReviewDate)</div>
 
                 </div>
-
-                <div class="item-rating"><b>@Html.DisplayFor(modelItem => item.Score)</b></div>
             </li>
         }
 
