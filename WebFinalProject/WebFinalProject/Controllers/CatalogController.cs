@@ -32,9 +32,9 @@ namespace WebFinalProject.Controllers
             {
                 var predicate = PredicateBuilder.False<Game>();
 
-                if (!String.IsNullOrEmpty(searchString)) predicate = predicate.Or(game => game.Title.Contains(searchString));
+                if (!String.IsNullOrEmpty(searchString)) predicate = predicate.And(game => game.Title.Contains(searchString));
 
-                if (!String.IsNullOrEmpty(genreFilter)) predicate = predicate.Or(game => game.Genre.Name.Equals(genreFilter));
+                if (!String.IsNullOrEmpty(genreFilter)) predicate = predicate.And(game => game.Genre.Name.Equals(genreFilter));
 
                 // int is always not null
                 predicate = predicate.Or(game => game.AverageScore >= scoreAbove);

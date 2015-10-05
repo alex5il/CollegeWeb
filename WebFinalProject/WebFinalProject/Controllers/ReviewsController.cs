@@ -26,9 +26,9 @@ namespace WebFinalProject.Controllers
             {
                 var predicate = PredicateBuilder.False<Review>();
 
-                if (!String.IsNullOrEmpty(searchString)) predicate = predicate.Or(review => review.Game.Title.Contains(searchString));
+                if (!String.IsNullOrEmpty(searchString)) predicate = predicate.And(review => review.Game.Title.Contains(searchString));
 
-                if (!String.IsNullOrEmpty(emailFilter)) predicate = predicate.Or(review => review.User.UserName.Contains(emailFilter));
+                if (!String.IsNullOrEmpty(emailFilter)) predicate = predicate.And(review => review.User.UserName.Contains(emailFilter));
 
                 // int is always not null
                 predicate = predicate.Or(game => game.Score>= scoreAbove);
