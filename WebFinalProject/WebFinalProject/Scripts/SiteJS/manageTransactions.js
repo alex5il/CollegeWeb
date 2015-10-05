@@ -66,14 +66,14 @@
         .attr("y", function (d) { return y(d.TotalCost); })
         .attr("height", function (d) { return height - y(d.TotalCost); })
         .attr("width", x.rangeBand())
-        .attr("fill", function (d) { return "rgb(" + Math.round(d.TotalCost * 1000) + ",10, 100)"; })
+        .attr("fill", function (d) { return "#CC0000"; })
 
 
         .on("mouseover", function (d) {
             d3.select(this)
             .transition()
             .duration(50)
-            .attr("fill", "#CC0000");
+            .attr("fill", "rgb(255, 10, 100)");
 
             //Get this bar's x/y values, then augment for the tooltip
             var xPosition = parseFloat(d3.select(this).attr("x")) + x.rangeBand() / 2;
@@ -90,7 +90,8 @@
             .text(d.TotalCost);
 
             d3.select("#pic")
-            .attr("src", "~/Content/Media/no_pic" + d.GameID);
+            .attr("src", "Content/Media/" + d.GameID + "image.png")
+            .attr("onerror", "if (this.src != 'Content/Media/no_pic.png') this.src = 'Content/Media/no_pic.png';");
 
             //Show the tooltip
             d3.select("#tooltip").classed("hidden", false);
@@ -101,7 +102,7 @@
             .transition()
             .delay(100)
             .duration(250)
-            .attr("fill", function (d) { return "rgb(" + Math.round(d.TotalCost * 1000) + ",10, 100)"; })
+            .attr("fill", function (d) { return "#CC0000"; })
 
             //Hide the tooltip
             d3.select("#tooltip").classed("hidden", true);
