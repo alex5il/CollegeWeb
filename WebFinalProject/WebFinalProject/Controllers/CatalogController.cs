@@ -151,6 +151,7 @@ namespace WebFinalProject.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public string BarGraphData()
         {
             var innerGroupJoinQuery =
@@ -161,7 +162,7 @@ namespace WebFinalProject.Controllers
                                  GameID = game.Id,
                                  GameName = game.Title,
                                  GameCost = game.Cost,
-                                 TotalCost = purchaseGroup.Sum(x => x.Quantity * x.Game.Cost)
+                                 TotalCost = purchaseGroup.Count() == 0 ? 0 : purchaseGroup.Sum(x => x.Quantity * x.Game.Cost)
                              }).OrderByDescending(x => x.TotalCost);
 
             var serializer = new JavaScriptSerializer();
